@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>单例模式</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="设计模式,单例模式,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/设计模式">设计模式</a></li>
+            
+            <li><a href="/tags/单例模式">单例模式</a></li>
+            
+            
+        </ul>
+        <h1>单例模式</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-06-13</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h3 id="一、单例模式"><a href="#一、单例模式" class="headerlink" title="一、单例模式"></a>一、单例模式</h3><h4 id="1-定义："><a href="#1-定义：" class="headerlink" title="1. 定义："></a>1. 定义：</h4><ul>
+<li>保证一个类只产生一个实例，并提供一个访问它的全局访问点的一种创建型设计模式。</li>
+</ul>
+<h4 id="2-使用场景："><a href="#2-使用场景：" class="headerlink" title="2. 使用场景："></a>2. 使用场景：</h4><ul>
+<li><p>要求生成唯一序列号的环境；</p>
+</li>
+<li><p>创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源；</p>
+</li>
+<li><p>需要定义大量的静态常量和静态方法（如工具类）的环境，可以采用单例模式（当然，也可以直接声明为static的方式）。比如工具类</p>
+</li>
+<li><p>在整个项目中需要一个共享访问点或共享数据，例如一个Web页面上的计数器，可以不用把每次刷新都记录到数据库中，使用单例模式保持计数器的值，并确保是线程安全的；</p>
+</li>
+</ul>
+<h4 id="3-优点："><a href="#3-优点：" class="headerlink" title="3. 优点："></a>3. 优点：</h4><ul>
+<li><p>减少维护对象的开销：创建、内存占用、回收 </p>
+</li>
+<li><p>避免对资源的多重占用（比如写文件操作）</p>
+</li>
+</ul>
+<h4 id="4-经典实现案例"><a href="#4-经典实现案例" class="headerlink" title="4. 经典实现案例"></a>4. 经典实现案例</h4><ul>
+<li><p>Spring中，项目加载时bean自动创建,而后每次调用bean的时候由IOC容器注入。对于IOC容器，实现了Singleton模式。采用双重判断加锁的单例模式</p>
+</li>
+<li><p>JDK中，<code>Runtime</code> 类封装了Java运行时的环境。每一个java程序实际上都是启动了一个JVM进程，那么每个JVM进程都是对应这一个Runtime实例，此实例是由JVM为其实例化的。采用饿汉式单例模式。</p>
+</li>
+</ul>
+<h4 id="5-注意问题"><a href="#5-注意问题" class="headerlink" title="5. 注意问题"></a>5. 注意问题</h4><ul>
+<li><p>线程安全</p>
+</li>
+<li><p>指令重排</p>
+</li>
+<li><p>反射构造：私有构造函数抛异常 if (instance != null) throw new RuntimeException(“private constructor”);</p>
+</li>
+<li><p>反序列化：添加readResolve方法，直接return instance;</p>
+</li>
+</ul>
+<h4 id="6-实现方式"><a href="#6-实现方式" class="headerlink" title="6. 实现方式"></a>6. 实现方式</h4><ul>
+<li><p>饿汉式</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 单例模式例六(饿汉模式) 非懒加载</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> SuperSuperZ</span><br><span class="hljs-comment">* <span class="hljs-doctag">@since</span> 2020-06-13</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton_1</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 是否 Lazy 初始化：否</span><br><span class="hljs-comment">    * 是否多线程安全：是</span><br><span class="hljs-comment">    * 实现难度：易</span><br><span class="hljs-comment">    * 描述：这种方式比较常用，但容易产生垃圾对象。</span><br><span class="hljs-comment">    * 优点：没有加锁，执行效率会提高。</span><br><span class="hljs-comment">    * 缺点：类加载时就初始化，浪费内存。</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 它基于 classloader 机制避免了多线程的同步问题，</span><br><span class="hljs-comment">    * 不过，instance 在类装载时就实例化，虽然导致类装载的原因有很多种，</span><br><span class="hljs-comment">    * 在单例模式中大多数都是调用 getInstance 方法， 但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，</span><br><span class="hljs-comment">    * 这时候初始化 instance 显然没有达到 lazy loading 的效果。</span><br><span class="hljs-comment">    */</span><br><br>    <span class="hljs-comment">//单例对象 加载时就实例化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton_1 instance = <span class="hljs-keyword">new</span> Singleton_1();<br><br>    <span class="hljs-comment">//私有构造方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton_1</span><span class="hljs-params">()</span></span>&#123;&#125;<br><br>    <span class="hljs-comment">//静态工厂方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton_1 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>懒汉式（线程不安全，严格来说不算是单例）</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 单例模式例一（线程不安全）懒汉式</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> SuperSuperZ</span><br><span class="hljs-comment">* <span class="hljs-doctag">@since</span> 2020-06-13</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton_2</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 是否 Lazy 初始化：是</span><br><span class="hljs-comment">    * 是否多线程安全：否</span><br><span class="hljs-comment">    * 实现难度：易</span><br><span class="hljs-comment">    * 描述：这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁 synchronized，所以严格意义上它并不算单例模式。</span><br><span class="hljs-comment">    * 这种方式 lazy loading 很明显，不要求线程安全，在多线程不能正常工作。</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 为什么说是线程不安全的</span><br><span class="hljs-comment">    * 假设Singleton类刚刚被初始化，instance对象还是空，这时候两个线程同时访问getInstance方法</span><br><span class="hljs-comment">    * 因为Instance是空，所以两个线程同时通过了条件判断，开始执行new操作</span><br><span class="hljs-comment">    * 这样一来，显然instance被构建了两次。</span><br><span class="hljs-comment">    */</span><br><br>    <span class="hljs-comment">//私有构造函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton_2</span><span class="hljs-params">()</span> </span>&#123;&#125;<br><br>    <span class="hljs-comment">//单例对象</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton_2 instance = <span class="hljs-keyword">null</span>;<br><br>    <span class="hljs-comment">//静态工厂方法-获取单例对象的方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton_2 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) &#123;<br>            instance = <span class="hljs-keyword">new</span> Singleton_2();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>懒汉式 (双重检测机制)</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 单例模式例二(双重检测机制) 懒汉式</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> SuperSuperZ</span><br><span class="hljs-comment">* <span class="hljs-doctag">@since</span> 2020-06-13</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton_3</span> </span>&#123;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 为什么说不是绝对的线程安全</span><br><span class="hljs-comment">    * 这里涉及到了JVM编译器的指令重排。</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 指令重排是什么意思呢？比如java中简单的一句 instance = new Singleton，会被编译器编译成如下JVM指令：</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * memory =allocate(); //1：分配对象的内存空间</span><br><span class="hljs-comment">    * ctorInstance(memory); //2：初始化对象</span><br><span class="hljs-comment">    * instance =memory; //3：设置instance指向刚分配的内存地址</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 但是这些指令顺序并非一成不变，有可能会经过JVM和CPU的优化，指令重排成下面的顺序：</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * memory =allocate(); //1：分配对象的内存空间</span><br><span class="hljs-comment">    * instance =memory; //3：设置instance指向刚分配的内存地址</span><br><span class="hljs-comment">    * ctorInstance(memory); //2：初始化对象</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 当线程A执行完1,3,时，instance对象还未完成初始化，但已经不再指向null。此时如果线程B抢占到CPU资源，</span><br><span class="hljs-comment">    * 执行 if（instance == null）的结果会是false，从而返回一个没有初始化完成的instance对象。</span><br><span class="hljs-comment">    */</span><br><br><br>    <span class="hljs-comment">//私有构造函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton_3</span><span class="hljs-params">()</span> </span>&#123;&#125;<br><br>    <span class="hljs-comment">//单例对象</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton_3 instance = <span class="hljs-keyword">null</span>;<br><br>    <span class="hljs-comment">//静态工厂方法-获取单例对象的方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton_3 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">//双重检测机制</span><br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//同步锁 锁住整个类（注意，这里不能使用对象锁）</span><br>            <span class="hljs-keyword">synchronized</span> (Singleton_3<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>&#123;<br>                <span class="hljs-comment">//双重检测机制</span><br>                <span class="hljs-comment">//进入Synchronized 临界区以后，还要再做一次判空。</span><br>                <span class="hljs-comment">//因为当两个线程同时访问的时候，线程A构建完对象，线程B也已经通过了最初的判空验证，</span><br>                <span class="hljs-comment">//不做第二次判空的话，线程B还是会再次构建instance对象。</span><br>                <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) &#123;<br>                    instance = <span class="hljs-keyword">new</span> Singleton_3();<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>懒汉式(绝对的线程安全)</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 单例模式例三(绝对的线程安全) 懒汉式</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> SuperSuperZ</span><br><span class="hljs-comment">* <span class="hljs-doctag">@since</span> 2020-06-13</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton_4</span> </span>&#123;<br><br>    <span class="hljs-comment">//私有构造函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton_4</span><span class="hljs-params">()</span> </span>&#123;&#125;<br><br>    <span class="hljs-comment">//单例对象 添加volatile关键字</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> Singleton_4 instance = <span class="hljs-keyword">null</span>;<br><br>    <span class="hljs-comment">//静态工厂方法-获取单例对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton_4 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) &#123;      <span class="hljs-comment">//双重检测机制</span><br>            <span class="hljs-keyword">synchronized</span> (Singleton_4<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>&#123;  <span class="hljs-comment">//同步锁</span><br>                <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) &#123;     <span class="hljs-comment">//双重检测机制</span><br>                    instance = <span class="hljs-keyword">new</span> Singleton_4();<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>静态内部类方式</p>
+<ul>
+<li>和饿汉式有些类似，但是这个却是懒加载<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 单例模式例四(静态内部类方式) 懒加载</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* 这种方式能达到双检锁方式一样的功效，但实现更简单。</span><br><span class="hljs-comment">* 对静态域使用延迟初始化，应使用这种方式而不是双检锁方式。</span><br><span class="hljs-comment">* 这种方式只适用于静态域的情况，双检锁方式可在实例域需要延迟初始化时使用。</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> SuperSuperZ</span><br><span class="hljs-comment">* <span class="hljs-doctag">@since</span> 2020-06-13</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton_5</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 1.从外部无法访问静态内部类LazyHolder，只有当调用Singleton.getInstance方法的时候，才能得到单例对象INSTANCE。</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 2.INSTANCE对象初始化的时机并不是在单例类Singleton被加载的时候，而是在调用getInstance方法，</span><br><span class="hljs-comment">    * 使得静态内部类LazyHolder被加载的时候。因此这种实现方式是利用classloader的加载机制来实现懒加载，并保证构建单例的线程安全。</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *存在问题：无法防止利用反射来重复构建对象</span><br><span class="hljs-comment">    * 第一步，获得单例类的构造器。</span><br><span class="hljs-comment">    * 第二步，把构造器设置为可访问。</span><br><span class="hljs-comment">    * 第三步，使用newInstance方法构造对象。</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * &lt;code&gt;</span><br><span class="hljs-comment">    * //获得构造器</span><br><span class="hljs-comment">    * Constructor con = Singleton.class.getDeclaredConstructor();</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * //设置为可访问</span><br><span class="hljs-comment">    * con.setAccessible(true);</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * //构造两个不同的对象</span><br><span class="hljs-comment">    * Singleton singleton1 = (Singleton)con.newInstance();</span><br><span class="hljs-comment">    * Singleton singleton2 = (Singleton)con.newInstance();</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * //验证是否是不同对象，结果为false</span><br><span class="hljs-comment">    * System.out.println(singleton1.equals(singleton2));</span><br><span class="hljs-comment">    * &lt;/&gt;</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    */</span><br><br>    <span class="hljs-comment">//静态内部类</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LazyHolder</span> </span>&#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Singleton_5 INSTANCE = <span class="hljs-keyword">new</span> Singleton_5();<br>    &#125;<br><br>    <span class="hljs-comment">//私有构造方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton_5</span><span class="hljs-params">()</span></span>&#123;&#125;<br><br>    <span class="hljs-comment">//静态工厂方法-获取单例对象</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton_5 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> LazyHolder.INSTANCE;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>枚举类方式</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* 单例模式例五(枚举类方式) 非懒加载</span><br><span class="hljs-comment">* 目前此方式是所有单例模式中最推荐的模式</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> SuperSuperZ</span><br><span class="hljs-comment">* <span class="hljs-doctag">@since</span> 2020-06-13</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton_6</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * JVM会保证enum不能被反射并且构造器方法只执行一次</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * 枚举实现可以防止反射构造对象，而且可以保证线程安全</span><br><span class="hljs-comment">    * 缺点：并非使用懒加载，单例对象是在枚举类被加载的时候进行初始化的</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-comment">//私有构造方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton_6</span><span class="hljs-params">()</span></span>&#123;&#125;<br><br>    <span class="hljs-comment">//静态方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton_6 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> Singleton.INSTANCE.getInstance();<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">enum</span> Singleton&#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 单例对象</span><br><span class="hljs-comment">        */</span><br>        INSTANCE;<br><br>        <span class="hljs-keyword">private</span> Singleton_6 singleton;<br><br>        <span class="hljs-comment">//JVM会保证此方法绝对只调用一次</span><br>        Singleton()&#123;<br>            singleton = <span class="hljs-keyword">new</span> Singleton_6();<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> Singleton_6 <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>            <span class="hljs-keyword">return</span> singleton;<br>        &#125;<br>    &#125;<br><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h4><ul>
+<li><a href="https://www.runoob.com/design-pattern/singleton-pattern.html" target="_blank" rel="noopener">单例模式-菜鸟教程</a></li>
+</ul>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/06/21/2020-06-21-java8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>java8新特性之Stream</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/05/26/2020-05-26-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%89%E5%85%A8%E4%B9%8BXSS/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>浏览器安全之XSS</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

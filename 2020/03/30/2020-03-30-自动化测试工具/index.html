@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>自动化测试工具</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="脚本,测试,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/脚本">脚本</a></li>
+            
+            <li><a href="/tags/测试">测试</a></li>
+            
+            
+        </ul>
+        <h1>自动化测试工具</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-03-30</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h2 id="一、什么是自动化测试？-what"><a href="#一、什么是自动化测试？-what" class="headerlink" title="一、什么是自动化测试？ what"></a>一、什么是自动化测试？ what</h2><ul>
+<li>测试：程序测试是为了发现错误而执行的过程。</li>
+<li>自动化测试：就是把手工进行的测试过程，转变成机器自动执行的测试过程。该过程，依旧是为了发现错误而执行。因此自动化测试的关键在于“自动化”三个字。  </li>
+</ul>
+<h2 id="二、为什么要进行自动化测试？-why"><a href="#二、为什么要进行自动化测试？-why" class="headerlink" title="二、为什么要进行自动化测试？ why"></a>二、为什么要进行自动化测试？ why</h2><ul>
+<li>测试任务繁重-替代手工测试提高效率</li>
+<li>修改程序后，回归测试</li>
+<li>长时间的系统稳定性测试</li>
+<li>高并发场景的压力测试</li>
+<li>避免人工测试时的疏漏或错误</li>
+<li>兼容性测试 - 在多个浏览器上测试的重复工作</li>
+</ul>
+<h2 id="三、怎么进行自动化测试？-how"><a href="#三、怎么进行自动化测试？-how" class="headerlink" title="三、怎么进行自动化测试？ how"></a>三、怎么进行自动化测试？ how</h2><ol>
+<li><strong>Selenium</strong><br>Selenium是基于WEB应用的验收测试工具集合，直接运行在浏览器中，通过一系列命令来模拟用户操作，然后Selenium可以将这些命令转化成实际的HTTP请求在浏览器中运行 。  </li>
+</ol>
+<ol start="2">
+<li><p><strong>Evosuite</strong><br>EvoSuite是一种工具，可以自动生成Java类的测试用例集的工具，生成的测试用例均符合Junit的标准，可直接在Junit中运行。但是只能辅助测试，并不能完全取代人工，测试用例的正确与否还需人工判断。</p>
+</li>
+<li><p><strong>JMeter</strong><br>Apache JMeter是Apache组织开发的基于Java的压力测试工具。它最初被设计用于Web应用测试，但后来扩展到其他测试领域。 </p>
+</li>
+<li><p>介绍链接</p>
+<ul>
+<li><p>web自动化测试神器——selenium家族介绍<br><a href="https://baijiahao.baidu.com/s?id=1621970935187757113&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1621970935187757113&amp;wfr=spider&amp;for=pc</a></p>
+</li>
+<li><p>EvoSuite官方文档<br><a href="http://www.evosuite.org/evosuite/" target="_blank" rel="noopener">http://www.evosuite.org/evosuite/</a><br><a href="http://www.evosuite.org/documentation/" target="_blank" rel="noopener">http://www.evosuite.org/documentation/</a></p>
+</li>
+<li><p>JMeter官网<br><a href="https://jmeter.apache.org/" target="_blank" rel="noopener">https://jmeter.apache.org/</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="四、自动化测试工具：Selenium"><a href="#四、自动化测试工具：Selenium" class="headerlink" title="四、自动化测试工具：Selenium"></a>四、自动化测试工具：Selenium</h2><h3 id="一-python"><a href="#一-python" class="headerlink" title="(一) python"></a>(一) python</h3><ul>
+<li>开源的Python发行版本：<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2020.02-Windows-x86_64.exe" target="_blank" rel="noopener">Anaconda3-2020.02-Windows-x86_64.exe</a></li>
+<li>或者去官网下载 <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python3</a></li>
+</ul>
+<h3 id="二-Selenium"><a href="#二-Selenium" class="headerlink" title="(二) Selenium"></a>(二) Selenium</h3><ol>
+<li><p>按照浏览器版本下载对应版本的webdriver</p>
+<ul>
+<li><p>IE浏览器驱动：<a href="http://docs.seleniumhq.org/download/" target="_blank" rel="noopener">http://docs.seleniumhq.org/download/</a></p>
+</li>
+<li><p>Firfox浏览器驱动：<a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="noopener">https://github.com/mozilla/geckodriver/releases</a></p>
+</li>
+<li><p>Chrome浏览器驱动：<a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="noopener">http://chromedriver.storage.googleapis.com/index.html</a></p>
+</li>
+<li><p>Edge浏览器驱动：<a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/" target="_blank" rel="noopener">https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/</a></p>
+</li>
+<li><p>淘宝开源镜像站：<a href="https://npm.taobao.org/mirrors" target="_blank" rel="noopener">https://npm.taobao.org/mirrors</a></p>
+</li>
+</ul>
+</li>
+<li><p>添加webdriver路径到环境变量</p>
+</li>
+<li><p>安装selenium</p>
+<ul>
+<li><p>方式一：命令行运行</p>
+  <figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> selenium<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>方式二：下载源码包安装</p>
+<ul>
+<li><p>(1) 下载源码包 <a href="https://pypi.org/project/selenium/#files" target="_blank" rel="noopener">selenium-3.141.0.tar.gz</a>  </p>
+</li>
+<li><p>(2) 解压文件，并进入到setup.py文件所在目录</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//解压文件,然后切换cmd当前路径为解压后的selenium-3.141.0下<br><span class="hljs-built_in">cd</span> selenium-3.141.0<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>(3) 安装模块</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">python setup.py install<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>(4) 安装成功可以查看安装模块信息</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">pip list<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>录制测试步骤并导出</p>
+<ul>
+<li>火狐浏览器可在<code>附加组件</code>中搜索 <code>Selenium IDE</code>,并添加。</li>
+<li>使用 <code>Selenium IDE</code> 录制步骤，导出python脚本，以搜狐邮箱注册为例</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Generated by Selenium IDE</span><br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By<br><span class="hljs-keyword">from</span> selenium.webdriver.common.action_chains <span class="hljs-keyword">import</span> ActionChains<br><span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions<br><span class="hljs-keyword">from</span> selenium.webdriver.support.wait <span class="hljs-keyword">import</span> WebDriverWait<br><span class="hljs-keyword">from</span> selenium.webdriver.common.keys <span class="hljs-keyword">import</span> Keys<br><span class="hljs-keyword">from</span> selenium.webdriver.common.desired_capabilities <span class="hljs-keyword">import</span> DesiredCapabilities<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestDefaultSuite</span><span class="hljs-params">()</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setup_method</span><span class="hljs-params">(self)</span>:</span><br>        self.driver = webdriver.Firefox()<br>        self.vars = &#123;&#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">teardown_method</span><span class="hljs-params">(self)</span>:</span><br>        self.driver.quit()<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_1</span><span class="hljs-params">(self)</span>:</span><br>        self.driver.get(<span class="hljs-string">"https://v4.passport.sohu.com/fe/mailRegister/lettersMail?fr=mail"</span>)<br>        self.driver.set_window_size(<span class="hljs-number">1114</span>, <span class="hljs-number">680</span>)<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(1) .input"</span>).click()<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(1) .input"</span>).send_keys(<span class="hljs-string">"hello"</span>)<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(2) .input"</span>).click()<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(2) .input"</span>).send_keys(<span class="hljs-string">"123456"</span>)<br><br><span class="hljs-comment"># 添加代码</span><br>mytest = TestDefaultSuite()<br><br>mytest.setup_method()<br><br>mytest.test_1()<br><br>mytest.teardown_method()<br></code></pre></td></tr></table></figure>
+
+
+<ol start="6">
+<li>安装并引入unittest库，以及BeautifulReport</li>
+</ol>
+<ul>
+<li>(1) 安装unittest、BeautifulReport库  <figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> unittest<br><br>pip <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure></li>
+<li>(2) 在脚本中引入unittest、BeautifulReport库，并修改代码  <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Ge# Generated by Selenium IDE</span><br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By<br><span class="hljs-keyword">from</span> selenium.webdriver.common.action_chains <span class="hljs-keyword">import</span> ActionChains<br><span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions<br><span class="hljs-keyword">from</span> selenium.webdriver.support.wait <span class="hljs-keyword">import</span> WebDriverWait<br><span class="hljs-keyword">from</span> selenium.webdriver.common.keys <span class="hljs-keyword">import</span> Keys<br><span class="hljs-keyword">from</span> selenium.webdriver.common.desired_capabilities <span class="hljs-keyword">import</span> DesiredCapabilities<br><span class="hljs-keyword">import</span> unittest<br><span class="hljs-keyword">from</span> BeautifulReport <span class="hljs-keyword">import</span> BeautifulReport <span class="hljs-keyword">as</span> bf<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestDefaultSuite</span><span class="hljs-params">(unittest.TestCase)</span>:</span><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setUpClass</span><span class="hljs-params">(self)</span>:</span><br>        self.driver = webdriver.Firefox()<br>        self.vars = &#123;&#125;<br><br><span class="hljs-meta">    @classmethod</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tearDownClass</span><span class="hljs-params">(self)</span>:</span><br>        self.driver.quit()<br>    <br>    <span class="hljs-comment"># @BeautifulReport.add_test_img('测试报告.png')</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_1</span><span class="hljs-params">(self)</span>:</span><br>        self.driver.get(<span class="hljs-string">"https://v4.passport.sohu.com/fe/mailRegister/lettersMail?fr=mail"</span>)<br>        self.driver.set_window_size(<span class="hljs-number">1114</span>, <span class="hljs-number">680</span>)<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(1) .input"</span>).click()<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(1) .input"</span>).send_keys(<span class="hljs-string">"hello"</span>)<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(2) .input"</span>).click()<br>        self.driver.find_element(By.CSS_SELECTOR, <span class="hljs-string">".input-body:nth-child(2) .input"</span>).send_keys(<span class="hljs-string">"123456"</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:<br><br>    suite = unittest.TestSuite()<br>    suite.addTest(TestDefaultSuite(<span class="hljs-string">"test_1"</span>))<br>    run = bf(suite)<br>    run.report(filename=<span class="hljs-string">'MyTestReport'</span>,description=<span class="hljs-string">'我的测试报告'</span>)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>这边还可指定输出报告的位置以及主题：</li>
+<li>报告主题样式 theme_default theme_cyan theme_candy theme_memories,样例如下<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">run.report(filename=<span class="hljs-string">'MyTestReport'</span>,description=<span class="hljs-string">'我的测试报告'</span>,report_dir=<span class="hljs-string">"C:\\Users\\userz\\Desktop"</span>,theme=<span class="hljs-string">'theme_cyan'</span> )<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="五、自动化测试工具：EvoSuite"><a href="#五、自动化测试工具：EvoSuite" class="headerlink" title="五、自动化测试工具：EvoSuite"></a>五、自动化测试工具：EvoSuite</h2><ul>
+<li>Maven工程集成EvoSuite官方教程：<a href="http://www.evosuite.org/documentation/tutorial-part-2/" target="_blank" rel="noopener">http://www.evosuite.org/documentation/tutorial-part-2/</a></li>
+</ul>
+<ol>
+<li><p>新建一个普通Maven项目</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog">mvn archetype:<span class="hljs-keyword">generate</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在pom.xml中添加项目依赖和构建依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.reporting.outputEncoding</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.encoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.encoding</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--JUnit依赖--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.13<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--log4j2日志组件--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.11.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--EvoSuite运行时库--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.evosuite<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>evosuite-standalone-runtime<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--构建依赖-EvoSuite插件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.evosuite.plugins<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>evosuite-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编写代码并调用EvoSuite插件</p>
+</li>
+</ol>
+<ul>
+<li>首次调用EvoSuite插件时，Maven将下载EvoSuite及其依赖项，需要些时间  <figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog">mvn evosuite:help                                 #获取帮助信息<br><br>mvn evosuite:help -Ddetail=true -Dgoal=<span class="hljs-keyword">generate</span>   #获取有关<span class="hljs-keyword">generate</span>插件的详细信息<br><br>mvn evosuite:<span class="hljs-keyword">generate</span>                             #生成测试代码文件，默认在<span class="hljs-meta">`.evosuite/best-tests`下</span><br><br>mvn -Dcores=<span class="hljs-number">4</span> evosuite:<span class="hljs-keyword">generate</span>                   #并行执行<span class="hljs-number">4</span>个EvoSuite作业生成测试代码文件作业<br><br>mvn evosuite:info                                 #查看EvoSuite生产状态<br><br>mvn evosuite:<span class="hljs-keyword">export</span>                               #输出测试代码文件到src/test/java目录<br><br>mvn test                                          #执行测试<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>生成示例</li>
+</ol>
+<ul>
+<li><p>应用代码</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* Hello world!</span><br><span class="hljs-comment">*</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> </span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">( String[] args )</span></span><br><span class="hljs-function">    </span>&#123;<br>        System.out.println(plus(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>));<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">plus</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> a + b;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>生成的测试代码</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example;<br><br><span class="hljs-keyword">import</span> org.junit.Test;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.Assert.*;<br><span class="hljs-keyword">import</span> com.example.App;<br><span class="hljs-keyword">import</span> org.evosuite.runtime.EvoRunner;<br><span class="hljs-keyword">import</span> org.evosuite.runtime.EvoRunnerParameters;<br><span class="hljs-keyword">import</span> org.junit.runner.RunWith;<br><br><span class="hljs-meta">@RunWith</span>(EvoRunner<span class="hljs-class">.<span class="hljs-keyword">class</span>) </span><br><span class="hljs-class">@<span class="hljs-title">EvoRunnerParameters</span>(<span class="hljs-title">mockJVMNonDeterminism</span> </span>= <span class="hljs-keyword">true</span>, useVFS = <span class="hljs-keyword">true</span>, useVNET = <span class="hljs-keyword">true</span>, resetStaticState = <span class="hljs-keyword">true</span>, separateClassLoader = <span class="hljs-keyword">true</span>, useJEE = <span class="hljs-keyword">true</span>) <br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App_ESTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">App_ESTest_scaffolding</span> </span>&#123;<br><br>    <span class="hljs-meta">@Test</span>(timeout = <span class="hljs-number">4000</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test0</span><span class="hljs-params">()</span>  <span class="hljs-keyword">throws</span> Throwable  </span>&#123;<br>        <span class="hljs-keyword">int</span> int0 = App.plus(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>        assertEquals(<span class="hljs-number">1</span>, int0);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span>(timeout = <span class="hljs-number">4000</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span>  <span class="hljs-keyword">throws</span> Throwable  </span>&#123;<br>        <span class="hljs-keyword">int</span> int0 = App.plus(<span class="hljs-number">0</span>, (-<span class="hljs-number">1074</span>));<br>        assertEquals((-<span class="hljs-number">1074</span>), int0);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span>(timeout = <span class="hljs-number">4000</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span>  <span class="hljs-keyword">throws</span> Throwable  </span>&#123;<br>        <span class="hljs-keyword">int</span> int0 = App.plus(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        assertEquals(<span class="hljs-number">0</span>, int0);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span>(timeout = <span class="hljs-number">4000</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span>  <span class="hljs-keyword">throws</span> Throwable  </span>&#123;<br>        String[] stringArray0 = <span class="hljs-keyword">new</span> String[<span class="hljs-number">0</span>];<br>        App.main(stringArray0);<br>        assertEquals(<span class="hljs-number">0</span>, stringArray0.length);<br>    &#125;<br><br>    <span class="hljs-meta">@Test</span>(timeout = <span class="hljs-number">4000</span>)<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test4</span><span class="hljs-params">()</span>  <span class="hljs-keyword">throws</span> Throwable  </span>&#123;<br>        App app0 = <span class="hljs-keyword">new</span> App();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="六、自动化测试工具：Jmeter"><a href="#六、自动化测试工具：Jmeter" class="headerlink" title="六、自动化测试工具：Jmeter"></a>六、自动化测试工具：Jmeter</h2><ol>
+<li><p>下载并解压<br><a href="https://mirror.bit.edu.cn/apache//jmeter/binaries/apache-jmeter-5.2.1.zip" target="_blank" rel="noopener">apache-jmeter-5.2.1.zip</a></p>
+</li>
+<li><p>运行bin目录下的 <code>ApacheJMeter.jar</code></p>
+</li>
+<li><p>添加线程组</p>
+<ul>
+<li>右击窗口左侧的<code>测试计划</code></li>
+<li>选择 <code>添加</code> =》<code>线程(用户)</code> =》<code>线程组</code></li>
+</ul>
+</li>
+<li><p>添加HTTP请求以及HTTP请求头</p>
+<ul>
+<li>请求主要信息在<code>HTTP请求</code>下配置，请求头信息在<code>HTTP信息头管理</code>下配置</li>
+<li>右击 <code>线程组</code></li>
+<li><code>添加</code> =》<code>取样器</code> =》<code>HTTP请求</code></li>
+<li><code>添加</code> =》<code>配置元件</code> =》<code>HTTP信息头管理</code></li>
+</ul>
+</li>
+<li><p>添加定时器</p>
+<ul>
+<li><code>同步定时器</code>用于同步所有线程，在线程都创建好后，同时发送请求</li>
+<li>右击 <code>线程组</code> </li>
+<li><code>添加</code> =》<code>定时器</code> =》<code>同步定时器</code><ul>
+<li>模拟用户组的数量 0 </li>
+<li>超时时间以毫秒为单位 0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>添加断言</p>
+<ul>
+<li>用<code>响应断言</code>来判断Http请求返回内容是否符合预期</li>
+<li>右击 <code>线程组</code></li>
+<li><code>添加</code> =》<code>断言</code> =》<code>响应断言</code></li>
+</ul>
+</li>
+<li><p>添加监听器</p>
+<ul>
+<li>这些不同的<code>监听器</code>可以查看不同形式的测试结果</li>
+<li><code>添加</code> =》<code>监听器</code> =》<code>察看结果树</code></li>
+<li><code>添加</code> =》<code>监听器</code> =》<code>汇总报告</code></li>
+<li><code>添加</code> =》<code>监听器</code> =》<code>汇总图</code></li>
+<li><code>添加</code> =》<code>监听器</code> =》<code>断言结果</code></li>
+</ul>
+</li>
+<li><p>参考链接</p>
+</li>
+</ol>
+<ul>
+<li>JMeter性能测试，完整入门篇：<a href="https://blog.csdn.net/u012111923/article/details/80705141" target="_blank" rel="noopener">https://blog.csdn.net/u012111923/article/details/80705141</a></li>
+</ul>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/04/01/2020-04-01-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>类加载机制</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/03/17/2020-03-17-CTFd%E5%8A%A8%E6%80%81%E9%9D%B6%E6%9C%BA%E6%90%AD%E5%BB%BA/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>CentOS7-CTFd动态靶机搭建</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

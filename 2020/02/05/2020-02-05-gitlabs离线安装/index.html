@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>gitlabs离线安装</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="gitlabs,git,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/gitlabs">gitlabs</a></li>
+            
+            <li><a href="/tags/git">git</a></li>
+            
+            
+        </ul>
+        <h1>gitlabs离线安装</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-02-05</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h2 id="〇、说明"><a href="#〇、说明" class="headerlink" title="〇、说明"></a>〇、说明</h2><h3 id="1-因为是安装完后，过了很久才整理的当时安装记录，参考博客链接找不到了，这里未能给出"><a href="#1-因为是安装完后，过了很久才整理的当时安装记录，参考博客链接找不到了，这里未能给出" class="headerlink" title="1. 因为是安装完后，过了很久才整理的当时安装记录，参考博客链接找不到了，这里未能给出"></a>1. 因为是安装完后，过了很久才整理的当时安装记录，参考博客链接找不到了，这里未能给出</h3><h3 id="2-安装环境是-Centos，另外邮件部分因为是内网，步骤是否正确没有去实践过"><a href="#2-安装环境是-Centos，另外邮件部分因为是内网，步骤是否正确没有去实践过" class="headerlink" title="2. 安装环境是 Centos，另外邮件部分因为是内网，步骤是否正确没有去实践过"></a>2. 安装环境是 Centos，另外邮件部分因为是内网，步骤是否正确没有去实践过</h3><h2 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h2><p>（环境依赖包安装[影响gitlab的某些功能使用]和防火墙配置）</p>
+<ol>
+<li><p>安装sshd  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">yum <span class="hljs-keyword">install</span> -y curl policycoreutils-python openssh-<span class="hljs-keyword">server</span><br>systemctl <span class="hljs-keyword">enable</span> sshd		                                   <span class="hljs-comment"># 开机启动sshd</span><br>systemctl <span class="hljs-keyword">start</span> sshd			                               <span class="hljs-comment"># 启动sshd</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置防火墙：采用命令开启防火墙（非必须）</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><code class="hljs jboss-cli">systemctl enable firewalld                                 <span class="hljs-comment"># 开机自动启动防火墙</span><br>systemctl start firewalld                                  <span class="hljs-comment"># 开启防火墙</span><br>firewall-cmd <span class="hljs-params">--permanent</span> <span class="hljs-params">--add-service=http</span><br>systemctl <span class="hljs-keyword">reload</span> firewalld<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装postfix（非必须）</p>
+</li>
+</ol>
+<ul>
+<li><p>GitLab 需要使用 postfix 来发送邮件，安装命令如下 </p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><code class="hljs cmake">yum <span class="hljs-keyword">install</span> -y postfix<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>打开 /etc/postfix/main.cf 文件，在第 119 行附近找到 inet_protocols = all，将 all 改为 ipv4 并按 Ctrl + S 保存</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">inet_protocols</span> = ipv4<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启用并启动 postfix</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><code class="hljs maxima">systemctl enable <span class="hljs-built_in">postfix</span> <br>systemctl start <span class="hljs-built_in">postfix</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="二、下载需求版本的rpm包，并传送到服务器"><a href="#二、下载需求版本的rpm包，并传送到服务器" class="headerlink" title="二、下载需求版本的rpm包，并传送到服务器"></a>二、下载需求版本的rpm包，并传送到服务器</h2><ol>
+<li>安装gitlab</li>
+</ol>
+<ul>
+<li>从<a href="https://mirror.tuna.tsinghua.edu.cn/gitlab-ce/" target="_blank" rel="noopener">清华源</a>下载rpm包：</li>
+<li>cd到rpm存放目录</li>
+<li>安装rpm包<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-ivh</span> 包名<span class="hljs-selector-class">.rpm</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="三、gitlab预配置：域名，邮件配置"><a href="#三、gitlab预配置：域名，邮件配置" class="headerlink" title="三、gitlab预配置：域名，邮件配置"></a>三、gitlab预配置：域名，邮件配置</h2><ol>
+<li><p>编辑配置文件 <code>/etc/gitlab/gitlab.rb</code>  </p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/gi</span>tlab<span class="hljs-regexp">/gitlab.rb</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置http协议所使用的访问地址</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">nginx['listen_port'] = <span class="hljs-number">4321</span><br>external_url 'http://10.33.123.54:<span class="hljs-number">4321</span>'     <span class="hljs-meta"># 若写域名，就是用域名访问</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>配置ssh协议所使用的访问地址和端口 </p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><code class="hljs prolog">#设置拉取代码采取的地址和端口<br>gitlab_rails[<span class="hljs-string">'gitlab_ssh_host'</span>] = <span class="hljs-string">'10.33.123.54'</span><br>gitlab_rails[<span class="hljs-string">'gitlab_shell_ssh_port'</span>] = <span class="hljs-number">4322</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改邮件配置</p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><code class="hljs prolog">gitlab_rails[<span class="hljs-string">'smtp_enable'</span>] = true<br>gitlab_rails[<span class="hljs-string">'smtp_address'</span>] = <span class="hljs-string">"smtp.exmail.qq.com"</span><br><br>#说明用的邮箱是<span class="hljs-symbol">QQ</span>企业邮箱<br>gitlab_rails[<span class="hljs-string">'smtp_port'</span>] = <span class="hljs-number">465</span> #采用<span class="hljs-number">465</span>端口，登录发信邮箱查看设置<br>gitlab_rails[<span class="hljs-string">'smtp_user_name'</span>] = <span class="hljs-string">"ying@digital.com.cn"</span><br>gitlab_rails[<span class="hljs-string">'smtp_password'</span>] = <span class="hljs-string">"**********"</span> #邮箱的密码或者授权码<br>gitlab_rails[<span class="hljs-string">'smtp_domain'</span>] = <span class="hljs-string">"exmail.qq.com"</span> <br>gitlab_rails[<span class="hljs-string">'smtp_authentication'</span>] = <span class="hljs-string">"login"</span><br>gitlab_rails[<span class="hljs-string">'smtp_enable_starttls_auto'</span>] = true<br>gitlab_rails[<span class="hljs-string">'smtp_tls'</span>] =true<br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>设置收信人，并且发件人和上面的账号要一致！！</strong>，不然会发信会报错，试过了！我还想实际邮箱和外在邮箱不一样。。。</p>
+<figure class="highlight prolog"><table><tr><td class="code"><pre><code class="hljs prolog">gitlab_rails[<span class="hljs-string">'gitlab_email_from'</span>] = <span class="hljs-string">'ying@digital.com.cn'</span><br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>首次启动你的GitLab实例<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">sudo gitlab-ctl reconfigure</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h2 id="四、启动gitlab："><a href="#四、启动gitlab：" class="headerlink" title="四、启动gitlab："></a>四、启动gitlab：</h2><figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">gitlab-ctl <span class="hljs-keyword">start</span><br><br>gitlab-ctl restart<br><br>gitlab-ctl tail          <span class="hljs-comment"># 查看日志；</span><br><br>gitlab-ctl <span class="hljs-keyword">status</span>        <span class="hljs-comment"># 查看服务状态；</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="五、完全卸载删除gitlab"><a href="#五、完全卸载删除gitlab" class="headerlink" title="五、完全卸载删除gitlab"></a>五、完全卸载删除gitlab</h2><ol>
+<li><p>停止gitlab  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">gitlab-ctl <span class="hljs-keyword">stop</span><br>gitlab-ctl <span class="hljs-keyword">uninstall</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>卸载gitlab（注意这里写的是gitlab-ce）</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">rpm -e gitlab-ce</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看gitlab进程</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> aux | <span class="hljs-keyword">grep</span> gitlab<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>强制杀掉第一个进程（就是带有好多………….的进程）<br>杀掉后，再用ps aux | grep gitlab确认一遍，还有没有gitlab的进程</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><code class="hljs angelscript">kill <span class="hljs-number">-9</span> 进程号<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除所有包含gitlab文件</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros"><span class="hljs-builtin-name">find</span> / -name gitlab | xargs rm -rf<br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="六、gitlab-状态码502问题"><a href="#六、gitlab-状态码502问题" class="headerlink" title="六、gitlab 状态码502问题"></a>六、gitlab 状态码502问题</h2><ul>
+<li>一般可能原因，一个是因为端口占用，第二是要等待1分钟后再访问gitlab，端口原因见下方</li>
+</ul>
+<ol>
+<li><p>编辑配置文件</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/gi</span>tlab<span class="hljs-regexp">/gitlab.rb</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改两个常见冲突端口号</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">external_url 'http://ip:<span class="hljs-number">8888</span>'<br><br>unicorn['port'] = <span class="hljs-number">8088</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启动GitLab</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">gitlab-ctl reconfigure</span><br><br><span class="hljs-attribute">gitlab-ctl restart</span><br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><h3 id="一-、常用命令"><a href="#一-、常用命令" class="headerlink" title="(一)、常用命令"></a>(一)、常用命令</h3><pre><code>gitlab-ctl start:启动全部服务
+
+gitlab-ctl restart:重启全部服务
+
+gitlab-ctl stop：停止全部服务
+
+gitlab-ctl reconfigure:使配置文件生效（一般修改完主配置文件/etc/gitlab/gitlab.rb，需要执行此命令）
+
+gitlab-ctl show-config ：验证配置文件
+
+gitlab-ctl uninstall:删除gitlab（保留数据）
+
+gitlab-ctl cleanse:删除所有数据，从新开始
+
+gitlab-ctl tail &lt;service name&gt;查看服务的日志</code></pre><h3 id="二-、常用的组件"><a href="#二-、常用的组件" class="headerlink" title="(二)、常用的组件"></a>(二)、常用的组件</h3><pre><code>nginx：静态Web服务器
+
+gitlab-shell：用于处理Git命令和修改authorized keys列表，我们的gitlab是以Git做为最层的，你操作实际上最后就是调用gitlab-shell命令进行处理。
+
+gitlab-workhorse:轻量级的反向代理服务器
+
+logrotate：日志文件管理工具
+
+postgresql：数据库
+
+redis：缓存数据库
+
+sidekiq：用于在后台执行队列任务（异步执行）
+
+unicorn：GitLab Rails应用是托管在这个服务器上面的</code></pre><h3 id="三-、基础目录："><a href="#三-、基础目录：" class="headerlink" title="(三)、基础目录："></a>(三)、基础目录：</h3><pre><code>/var/opt/gitlab/git-data/repositories：                        # 库默认存储目录
+
+/opt/gitlab：                                         # 应用代码和相应的依赖程序
+
+/var/opt/gitlab：gitlab-ctl 
+                   # reconfigure命令编译后的应用数据和配置文件，不需要人为修改配置
+
+/etc/gitlab                                                     # 配置文件目录
+
+/var/log/gitlab                         # 此目录下存放了gitlab各个组件产生的日志
+
+/var/opt/gitlab/backups/                                   # 备份文件生成的目录</code></pre>
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/02/05/2020-02-05-docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>docker常用命令</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/02/05/2020-02-05-Maven%E5%85%A5%E9%97%A8/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>Maven入门</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

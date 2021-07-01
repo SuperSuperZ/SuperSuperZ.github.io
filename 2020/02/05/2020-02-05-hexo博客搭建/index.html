@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>hexo博客搭建</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="hexo,博客,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/hexo">hexo</a></li>
+            
+            <li><a href="/tags/博客">博客</a></li>
+            
+            
+        </ul>
+        <h1>hexo博客搭建</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-02-05</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>windows10 64位<br>nodejs v12.14.0<br>npm 6.13.4  </p>
+<h2 id="一、安装hexo"><a href="#一、安装hexo" class="headerlink" title="一、安装hexo"></a>一、安装hexo</h2><ol>
+<li><p>新建一个文件夹，用于存放博客的所有内容</p>
+</li>
+<li><p>在新文件夹下打开命令行</p>
+</li>
+<li><p>键入命令<code>npm i -g hexo</code>，安装hexo</p>
+</li>
+<li><p>查看hexo版本<code>hexo -v</code></p>
+</li>
+</ol>
+<h2 id="二、初始化"><a href="#二、初始化" class="headerlink" title="二、初始化"></a>二、初始化</h2><ol>
+<li>初始化<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo init</span><br></code></pre></td></tr></table></figure></li>
+<li>初始化完成后，当前文件夹内会多出以下文件或文件夹  <ul>
+<li>node_modules：各种依赖包</li>
+<li>public：存放生成的静态文件</li>
+<li>scaffolds：一些通用的markdown模板</li>
+<li>source：自己编写的markdown文件，_drafts草稿文件，_posts发布的文章</li>
+<li>themes：主题</li>
+<li>_config.yml：整个博客的配置</li>
+<li>db.json：source解析所得到的</li>
+<li>package.json：项目所需模块项目的配置信息</li>
+</ul>
+</li>
+</ol>
+<h2 id="三、hexo常用命令"><a href="#三、hexo常用命令" class="headerlink" title="三、hexo常用命令"></a>三、hexo常用命令</h2><ol>
+<li><p>创建新文章</p>
+<figure class="highlight vala"><table><tr><td class="code"><pre><code class="hljs vala">hexo <span class="hljs-keyword">new</span> [layout] &lt;title&gt;  <br><span class="hljs-meta"># layout省略则默认为post布局，其他还有page 和 draft</span><br><span class="hljs-meta"># 例如： 新建文章 hexo new 1974-10-24-HelloWorld，则会在 “source\_posts” 下新建一个Markdown文件</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>运行hexo服务器<br>(PS：默认部署到本机4000端口，可直接访问预览效果）</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><code class="hljs axapta">hexo <span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>生成静态文件</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog">hexo <span class="hljs-keyword">generate</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>部署到远程网站</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo deploy</span><br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="四、关联远程网站，搭建github-pages（以github为例）"><a href="#四、关联远程网站，搭建github-pages（以github为例）" class="headerlink" title="四、关联远程网站，搭建github pages（以github为例）"></a>四、关联远程网站，搭建github pages（以github为例）</h2><ol>
+<li><p>在github上面新建仓库(New repository)</p>
+</li>
+<li><p>设置仓库名(Repository name)为 <code>yourname.github.io</code>，其中yourname需要修改为你的github用户名，否则不能用于github pages</p>
+</li>
+<li><p>设置好后，创建仓库(Create repository)</p>
+</li>
+<li><p>生成 SSH Key，在用户文件夹下新建<code>.ssh</code>文件夹，并在命令行中运行一下命令</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">"youremail@example.com"</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将生成的 <code>id_rsa.pub</code> 中的文件内容，粘贴到github中（个人 - 设置(setting) - SSH and GPG keys - New SSH key - Key文本框）。Title随便填，主要用于区分不同的SSH key。</p>
+</li>
+<li><p>测试SSH key是否添加成功，本地命令行输入下方命令</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编辑hexo文件夹下的 <code>_config.yml</code> ,修改deploy的部分，其中repo记得换成你自己的仓库</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><code class="hljs less"><span class="hljs-attribute">deploy</span>:<br>  <span class="hljs-attribute">type</span>: git<br>  <span class="hljs-attribute">repo</span>: <span class="hljs-attribute">https</span>:<span class="hljs-comment">//github.com/YourgithubName/YourgithubName.github.io.git</span><br>  <span class="hljs-attribute">branch</span>: master<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装hexo部署所需的git</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>部署,过程中需要输入github的用户名和密码</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><code class="hljs verilog">hexo clean<br>hexo <span class="hljs-keyword">generate</span><br>hexo deploy<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器输入 <code>http://yourgithubname.github.io</code>，即可查看你的博客了</p>
+</li>
+</ol>
+<h2 id="五、更换主题"><a href="#五、更换主题" class="headerlink" title="五、更换主题"></a>五、更换主题</h2><ol>
+<li><p>下载主题zip包或者，git clone一个主题到项目的 <code>themes</code> 文件夹下</p>
+</li>
+<li><p>修改项目根目录下的 <code>_config.yml</code> 文件中 <code>theme</code>的值为下载的主题名称即可</p>
+</li>
+<li><p>执行 <code>hexo generate &amp; hexo server</code>，然后浏览器访问 “localhost:4000” 预览效果</p>
+</li>
+</ol>
+<h2 id="六、添加其他功能"><a href="#六、添加其他功能" class="headerlink" title="六、添加其他功能"></a>六、添加其他功能</h2><ul>
+<li><p>Hexo博客添加SEO-评论系统-阅读统计-站长统计：<br><a href="http://visugar.com/2017/08/01/20170801HexoPlugins/" target="_blank" rel="noopener">http://visugar.com/2017/08/01/20170801HexoPlugins/</a></p>
+</li>
+<li><p>从零开始制作 Hexo 主题：<br><a href="https://www.cnblogs.com/mmzuo-798/p/10451385.html" target="_blank" rel="noopener">https://www.cnblogs.com/mmzuo-798/p/10451385.html</a></p>
+</li>
+</ul>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/02/05/2020-02-05-Maven%E5%85%A5%E9%97%A8/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>Maven入门</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/01/07/2020-01-07-node.js%E5%AE%89%E8%A3%85(%E9%80%9A%E8%BF%87%E5%AE%98%E7%BD%91zip%E5%8C%85%E5%AE%89%E8%A3%85)/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>node.js安装(通过官网zip包安装)</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

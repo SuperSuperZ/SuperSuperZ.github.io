@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>OkHttp在安卓中的使用</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="Android,OkHttp,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/Android">Android</a></li>
+            
+            <li><a href="/tags/OkHttp">OkHttp</a></li>
+            
+            
+        </ul>
+        <h1>OkHttp在安卓中的使用</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2019-10-25</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h2 id="1-Android-studio-依赖"><a href="#1-Android-studio-依赖" class="headerlink" title="1. Android studio 依赖"></a>1. Android studio 依赖</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">implementation <span class="hljs-string">'com.squareup.okhttp3:okhttp:3.10.0'</span><br></code></pre></td></tr></table></figure>
+<h2 id="2-添加网络权限"><a href="#2-添加网络权限" class="headerlink" title="2. 添加网络权限"></a>2. 添加网络权限</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">&lt;uses-permission android:name=<span class="hljs-string">"android.permission.INTERNET"</span>/&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="3-编写工具类"><a href="#3-编写工具类" class="headerlink" title="3.编写工具类"></a>3.编写工具类</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.xxx.utils;<br><br><span class="hljs-keyword">import</span> android.os.Handler;<br><span class="hljs-keyword">import</span> android.os.Message;<br><span class="hljs-keyword">import</span> android.util.Log;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.Set;<br><br><span class="hljs-keyword">import</span> okhttp3.Call;<br><span class="hljs-keyword">import</span> okhttp3.Callback;<br><span class="hljs-keyword">import</span> okhttp3.MediaType;<br><span class="hljs-keyword">import</span> okhttp3.OkHttpClient;<br><span class="hljs-keyword">import</span> okhttp3.Request;<br><span class="hljs-keyword">import</span> okhttp3.RequestBody;<br><span class="hljs-keyword">import</span> okhttp3.Response;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OkHttp3Utils</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> MediaType JSON = MediaType.parse(<span class="hljs-string">"application/json;charset=utf-8"</span>);<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> MediaType URLENCODED=MediaType.parse(<span class="hljs-string">"application/x-www-form-urlencoded;charset=utf-8"</span>);<br><br><br>    <span class="hljs-keyword">private</span> OkHttpClient myOkHttpClient;<br><br><br><br>    <span class="hljs-comment">//回调接口</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">AnsyCallback</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AnsyLoader</span><span class="hljs-params">(<span class="hljs-keyword">int</span> what,T loder)</span></span>;<br>    &#125;<br><br><br><br><br>    <span class="hljs-comment">//get、post封装方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String url,<span class="hljs-keyword">final</span> AnsyCallback&lt;T&gt; ansyCallback)</span></span>&#123;<br>        sendRequestWithOkHttp( url,<span class="hljs-keyword">null</span>,ansyCallback,URLENCODED);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">post</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String url,String body,<span class="hljs-keyword">final</span> AnsyCallback&lt;T&gt; ansyCallback)</span></span>&#123;<br>        sendRequestWithOkHttp( url,body,ansyCallback,URLENCODED);<br>    &#125;<br><br><br><br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 将Map&lt;String, String&gt; 转换为 name=value&amp;name=value 形式的字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> map</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">map2NamVal</span><span class="hljs-params">(Map&lt;String, String&gt; map)</span></span>&#123;<br>         StringBuilder str = <span class="hljs-keyword">new</span> StringBuilder();<br>         Set&lt;String&gt; set = map.keySet();<br>         <span class="hljs-keyword">for</span> (String key : set) &#123;<br>             str.append(key).append(<span class="hljs-string">"="</span>).append(map.get(key)).append(<span class="hljs-string">"&amp;"</span>);<br>         &#125;<br>         <span class="hljs-keyword">return</span> str.toString().substring(<span class="hljs-number">0</span>, str.lastIndexOf(<span class="hljs-string">"&amp;"</span>));<br>     &#125;<br><br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> url 访问链接</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> body 请求参数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ansyCallback 回调接口</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> mime MIME类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendRequestWithOkHttp</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String url,String body,</span></span><br><span class="hljs-function"><span class="hljs-params">                                <span class="hljs-keyword">final</span> AnsyCallback&lt;T&gt; ansyCallback,MediaType mime)</span></span>&#123;<br><br>        <span class="hljs-keyword">final</span> Handler handler = <span class="hljs-keyword">new</span> Handler() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br>                ansyCallback.AnsyLoader(msg.what,(T)msg.obj);<br>            &#125;<br>        &#125;;<br><br>        myOkHttpClient = <span class="hljs-keyword">new</span> OkHttpClient();<br>        Request.Builder requestBuilder = <span class="hljs-keyword">new</span> Request.Builder().url(url);<br>        Request request;<br>        <span class="hljs-keyword">if</span> (body != <span class="hljs-keyword">null</span>) &#123;<br>            RequestBody requestBody = RequestBody.create(mime,body);<br>            System.out.printf(<span class="hljs-string">"******body*%s%s*******"</span>,mime,body);<br>            request = requestBuilder.post(requestBody).build();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            request = requestBuilder.get().build();<br>        &#125;<br>        Call mycall = myOkHttpClient.newCall(request);<br><br><span class="hljs-comment">//        发送异步请求</span><br>        mycall.enqueue(<span class="hljs-keyword">new</span> Callback() &#123;<br><br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Call call, IOException e)</span> </span>&#123;<br>                Message message = handler.obtainMessage(<span class="hljs-number">0</span>,e.getStackTrace());<br>                handler.sendMessage(message);<br>            &#125;<br><br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(Call call, Response response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>                <span class="hljs-keyword">if</span> (!response.isSuccessful()) &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IOException(<span class="hljs-string">"请求失败: "</span> + response.body().toString());<br>                &#125;<span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">null</span> != response.cacheResponse()) &#123;<br>                        String data = response.cacheResponse().toString();<br>                        handler.sendMessage(handler.obtainMessage(<span class="hljs-number">1</span>, data));<br>                        System.out.println(<span class="hljs-string">"****print****"</span>+data);<br>                        Log.i(<span class="hljs-string">"****Request****"</span>, <span class="hljs-string">"cache---"</span> + data);<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        String data = response.body().string();<br>                        String str = response.networkResponse().toString();<br>                        Message message = handler.obtainMessage(<span class="hljs-number">1</span>, data);<br>                        handler.sendMessage(message);<br>                        System.out.println(<span class="hljs-string">"****print****"</span>+data);<br>                        Log.i(<span class="hljs-string">"****Request****"</span>, <span class="hljs-string">"network---"</span> + str);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-在点击事件内调用工具类发送请求"><a href="#4-在点击事件内调用工具类发送请求" class="headerlink" title="4.在点击事件内调用工具类发送请求"></a>4.在点击事件内调用工具类发送请求</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">OkHttp3Utils&lt;String&gt; okHttp3 = <span class="hljs-keyword">new</span> OkHttp3Utils&lt;&gt;();<br>Map&lt;String, String&gt; map=<span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>map.put(<span class="hljs-string">"username"</span>,id.getText().toString());<br>map.put(<span class="hljs-string">"password"</span>, passwd.getText().toString());<br>map.put(<span class="hljs-string">"isMax"</span>,<span class="hljs-string">"false"</span>);<br>String databody=okHttp3.map2NamVal(map);<br><br>okHttp3.post(loginUrl,databody, <span class="hljs-keyword">new</span> OkHttp3Utils.AnsyCallback&lt;String&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AnsyLoader</span><span class="hljs-params">(<span class="hljs-keyword">int</span> what,String loder)</span> </span>&#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            JSONObject obj = <span class="hljs-keyword">new</span> JSONObject(loder);<br>            <span class="hljs-keyword">if</span>(<span class="hljs-string">"1"</span>.equals(obj.get(<span class="hljs-string">"status"</span>).toString())) &#123;<br>                Intent intent = <span class="hljs-keyword">new</span> Intent(StartActivity.<span class="hljs-keyword">this</span>, Demo3ActivityWithFragment<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;<br>                startActivity(intent);<br>                Toast.makeText(getApplicationContext(), <span class="hljs-string">"登录成功"</span>, Toast.LENGTH_SHORT).show();<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                Toast.makeText(getApplicationContext(), <span class="hljs-string">"用户名或密码错误"</span>, Toast.LENGTH_SHORT).show();<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (JSONException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2019/10/25/2019-10-25-%E5%86%85%E6%A0%B8%EF%BC%88%E4%BA%8C%EF%BC%89Linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>内核（二）Linux系统调用的实现方法</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2019/10/25/2019-10-25-MySQL%E8%AF%BB%E5%87%BA%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>MySQL读出数据出现中文乱码</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>Maven入门</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="Maven,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/Maven">Maven</a></li>
+            
+            
+        </ul>
+        <h1>Maven入门</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-02-05</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h2 id="一、Maven是什么？"><a href="#一、Maven是什么？" class="headerlink" title="一、Maven是什么？"></a>一、Maven是什么？</h2><ul>
+<li><p>Maven是一个跨平台的项目管理工具。其主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。</p>
+</li>
+<li><p>Maven基本功能：</p>
+<ul>
+<li>构建</li>
+<li>编译</li>
+<li>打包</li>
+<li>测试</li>
+<li>依赖管理(各种jar包)</li>
+</ul>
+</li>
+<li><p>Maven的特点：</p>
+<ul>
+<li><p>项目设置遵循统一的规则。</p>
+</li>
+<li><p>任意工程中共享。</p>
+</li>
+<li><p>依赖管理包括自动更新。</p>
+</li>
+<li><p>一个庞大且不断增长的库。</p>
+</li>
+<li><p>可扩展，能够轻松编写 Java 或脚本语言的插件。</p>
+</li>
+<li><p>只需很少或不需要额外配置即可即时访问新功能。 </p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、Maven安装和配置"><a href="#二、Maven安装和配置" class="headerlink" title="二、Maven安装和配置"></a>二、Maven安装和配置</h2><ol start="0">
+<li><p><strong>确定已安装jdk</strong></p>
+</li>
+<li><p><strong>下载安装</strong>  </p>
+<ul>
+<li>访问<a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">官网下载页面</a>，<br>下载系统对应版本的maven安装包，并解压。<br>(PS：因为笔者是Windows系统，所以下载的是 <code>apache-maven-3.6.3-bin.zip</code>。)</li>
+</ul>
+</li>
+<li><p><strong>配置环境变量</strong>  </p>
+<ul>
+<li>在环境变量中添加变量 <code>MAVEN_HOME</code>，变量值为 <code>C:\Java\apache-maven-3.6.3</code>，  </li>
+<li>并在已有变量 <code>Path</code> 中追加值 <code>%MAVEN_HOME%\bin</code>。<br>(PS：变量值请大家自行更改为自己之前解压的目录路径。)</li>
+</ul>
+</li>
+<li><p><strong>检查是否安装成功</strong>  </p>
+<ul>
+<li>运行 <code>CMD</code> 打开命令行，输入<code>mvn --version</code>，若输出版本信息则为安装成功。</li>
+</ul>
+</li>
+<li><p><strong>配置本地仓库(可选)</strong>  </p>
+<ul>
+<li>在D盘，新建文件夹 <code>maven-repository</code>  </li>
+<li>然后在 <code>C:\Java\apache-maven-3.6.3\conf\settings.xml</code> 文件中，将 <code>&lt;localRepository&gt;</code> 节点取消注释。  </li>
+<li>并更改为 <code>&lt;localRepository&gt;D:\maven-repository&lt;/localRepository&gt;</code>。<br>(PS：<br>配置了本地仓库后，当我们从maven中获取jar包的时候，maven首先会在本地仓库中查找，如果本地仓库有则返回；如果没有则从远程仓库中获取包，并在本地库中保存。<br>本地仓库其实起到了一个缓存的作用，它的默认地址是 C:\Users\用户名.m2。)</li>
+</ul>
+</li>
+<li><p><strong>配置阿里云镜像(可选)</strong>  </p>
+<ul>
+<li>在 <code>C:\Java\apache-maven-3.6.3\conf\settings.xml</code> 文件中，的 <code>mirrors</code> 节点下添加下方代码。<br>(PS：将MAVEN镜像路径添加阿里镜像，是为了提高jar包下载速度，默认的远程仓库maven中心仓库在国外，下载速度较慢)  <figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>nexus-aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>Nexus aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span> <br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>IDEA中配置maven(可选)</strong><br>步骤如下：  </p>
+<ul>
+<li>File =&gt; Settings =&gt; 输入框里输入Maven =&gt; 定位Maven选项</li>
+<li>在右侧，Maven home directory选择为解压目录</li>
+<li>User settings file 选择解压目录下，conf文件夹下的settings.xml文件</li>
+<li>Local repository，应该会按照settings.xml自动填写</li>
+</ul>
+</li>
+</ol>
+<h2 id="三、Maven构建项目（命令行交互方式）"><a href="#三、Maven构建项目（命令行交互方式）" class="headerlink" title="三、Maven构建项目（命令行交互方式）"></a>三、Maven构建项目（命令行交互方式）</h2><h3 id="（一）命令行交互方式"><a href="#（一）命令行交互方式" class="headerlink" title="（一）命令行交互方式"></a>（一）命令行交互方式</h3><ol>
+<li><p>打开 <code>CMD</code> 命令行，输入 <code>mvn archetype:generate</code></p>
+</li>
+<li><p>命令行将输出一个模板列表，需要我们选择一个模板(Choose archetype)为基础来构建工程</p>
+</li>
+<li><p>我们可以键入列表前面的序号或关键字，来缩小模板选择范围或者直接选中模板，这里输入 <code>webapp</code>，筛选出web应用的模板</p>
+</li>
+<li><p>键入需要的 <code>模板序号</code>，来选择构建web项目的模板 <code>org.apache.maven.archetypes:maven-archetype-webapp</code></p>
+</li>
+<li><p>选择模板的版本，输入序号回车。若模板只有一个版本，则会跳过这一步</p>
+</li>
+<li><p>接着输入项目的坐标：<code>groupId</code>(项目组织ID) 、 <code>artifactId</code>(项目ID)、 <code>version</code>(版本)、 <code>package</code>(包)  </p>
+<ul>
+<li>groupId：项目组织唯一的标识符，默认会对应JAVA的包的结构，是main目录里java的目录结构。  </li>
+<li>artifactId：项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。  </li>
+<li>version：项目的版本，“1.0-SNAPSHOT”表示快照1.0版本，“1.0-release”表示发行版1.0</li>
+</ul>
+</li>
+<li><p>接着是确认属性配置(Confirm properties configuration)，若信息无误，直接回车即可  </p>
+</li>
+<li><p>可以看到，当前目录下多了一个以输入的<code>artifactId</code>来命名的文件夹</p>
+</li>
+<li><p>到此基本项目构建完成</p>
+</li>
+</ol>
+<h3 id="（二）命令行非交互方式"><a href="#（二）命令行非交互方式" class="headerlink" title="（二）命令行非交互方式"></a>（二）命令行非交互方式</h3><ol>
+<li>直接在命令行中键入一下命令<br>注意：1. 下面命令后面的 <code>^</code>,表示换行接着输入，不能漏。  2.换行输入，提示符会变成 <code>More?</code>。   <figure class="highlight routeros"><table><tr><td class="code"><pre><code class="hljs routeros">mvn archetype:generate <span class="hljs-attribute">-DgroupId</span>=com.zcz.webdemo2^<br><span class="hljs-attribute">-DartifactId</span>=webdemo2^<br><span class="hljs-attribute">-DarchetypeArtifactId</span>=maven-archetype-webapp^<br><span class="hljs-attribute">-DinteractiveMode</span>=<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>参数解释：<ul>
+<li>-DgroupId：输入的groupId</li>
+<li>-DartifactId：输入的artifactId</li>
+<li>-DarchetypeArtifactId：模板名称</li>
+<li>-DinteractiveMode=false：不以交互式命令行的形式构建项目</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、Maven编译项目、测试项目、打包项目"><a href="#四、Maven编译项目、测试项目、打包项目" class="headerlink" title="四、Maven编译项目、测试项目、打包项目"></a>四、Maven编译项目、测试项目、打包项目</h2><ol>
+<li><p>在项目约定位置写好java代码之后，就要进行项目的编译<br>（PS：约定位置见后面的“默认约定”一节。）</p>
+</li>
+<li><p>编译先进入Maven项目根目录下，然后执行 </p>
+ <figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">mvn </span>compile<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>若之前以写过测试代码，这里可执行命令来测试<br>（PS：测试类及代码约定见后面的“默认约定”一节。） </p>
+ <figure class="highlight armasm"><table><tr><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">mvn </span>test<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>打包项目，就是把编译完成的class文件，打到一个jar或者war包内</p>
+ <figure class="highlight actionscript"><table><tr><td class="code"><pre><code class="hljs actionscript">mvn <span class="hljs-class"><span class="hljs-keyword">package</span></span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>mvn package 、 mvn install 、 mvn deploy区别  </p>
+<table>
+<thead>
+<tr>
+<th align="center">package</th>
+<th align="center">install</th>
+<th align="center">deploy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">打包到项目target目录</td>
+<td align="center">打包到本地仓库</td>
+<td align="center">打包上传到远程仓库，需配置pom文件</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="五、关于pom-xml文件"><a href="#五、关于pom-xml文件" class="headerlink" title="五、关于pom.xml文件"></a>五、关于pom.xml文件</h2><ol>
+<li><p>刚刚构建的项目文件夹下有一个pom.xml文件。<br>　　它是项目的描述文件，描述了项目的maven坐标，依赖关系，开发者需要遵循的规则，缺陷管理系统，组织和licenses，以及其他所有的项目相关因素，是项目级别的配置文件。<br>(PS：最基础的pom文件，可以看这里 <a href="http://maven.apache.org/pom.html#The_Basics" target="_blank" rel="noopener">http://maven.apache.org/pom.html#The_Basics</a> )</p>
+</li>
+<li><p>web项目的pom.xml结构  </p>
+<ul>
+<li>特别说明一下依赖节点（<code>&lt;dependency&gt;</code>）下的<code>&lt;scope&gt;</code><br>  配置provided相当于compile，但是在打包阶段做了exclude的动作，也就是当我们打包的时候就不会把这个依赖加进去。最常见的是j2ee规范相关的servlet-api和jsp-api等jar包，一般Tomcat会提供，无需在打包到war包中，如果不配置为provided，把这些包打包到工程war包中，在tomcat6以上版本会出现冲突无法正常运行程序（版本不符的情况）。<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>  </span><br><span class="hljs-tag">    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 模型版本。maven2.0必须是这样写，现在是maven2唯一支持的版本 --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.winner.trade，maven会将该项目打成的jar包放本地路径：/com/winner/trade --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.winner.trade<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 本项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的 --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>trade-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 本项目目前所处的版本号 --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 打包的机制，如pom,jar, maven-plugin, ejb, war, ear, rar, par，默认为jar --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>jar<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 帮助定义构件输出的一些附属构件,附属构件与主构件对应，有时候需要加上classifier才能唯一的确定该构件 不能直接定义项目的classifer,因为附属构件不是项目直接默认生成的，而是由附加的插件帮助生成的 --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">classifier</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">classifier</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 定义本项目的依赖关系 --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>  <br><br>        <span class="hljs-comment">&lt;!-- 每个dependency都对应这一个jar包 --&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br><br>            <span class="hljs-comment">&lt;!--一般情况下，maven是通过groupId、artifactId、version这三个元素值（俗称坐标）来检索该构件， 然后引入你的工程。如果别人想引用你现在开发的这个项目（前提是已开发完毕并发布到了远程仓库），--&gt;</span>   <br>            <span class="hljs-comment">&lt;!--就需要在他的pom文件中新建一个dependency节点，将本项目的groupId、artifactId、version写入， maven就会把你上传的jar包下载到他的本地 --&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.winner.trade<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>trade-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><br>            <span class="hljs-comment">&lt;!-- maven认为，程序对外部的依赖会随着程序的所处阶段和应用场景而变化，所以maven中的依赖关系有作用域(scope)的限制。 --&gt;</span>  <br>            <span class="hljs-comment">&lt;!--scope包含如下的取值：compile（编译范围）、provided（已提供范围）、runtime（运行时范围）、test（测试范围）、system（系统范围） --&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  <br><br>            <span class="hljs-comment">&lt;!-- 设置指依赖是否可选，默认为false,即子项目默认都继承:为true,则子项目必需显示的引入，与dependencyManagement里定义的依赖类似  --&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span>  <br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">classifier</span>&gt;</span>jdk15<span class="hljs-tag">&lt;/<span class="hljs-name">classifier</span>&gt;</span><br><br>            <span class="hljs-comment">&lt;!-- 屏蔽依赖关系。 比如项目中使用的libA依赖某个库的1.0版，libB依赖某个库的2.0版，现在想统一使用2.0版，就应该屏蔽掉对1.0版的依赖 --&gt;</span>  <br>            <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span>  <br>                <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span>  <br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>                <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span>  <br>            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span>  <br><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>  <br><br>    <span class="hljs-comment">&lt;!-- 为pom定义一些常量，在pom中的其它地方可以直接引用 使用方式 如下 ：$&#123;file.encoding&#125; --&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">file.encoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">file.encoding</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">java.source.version</span>&gt;</span>1.5<span class="hljs-tag">&lt;/<span class="hljs-name">java.source.version</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">java.target.version</span>&gt;</span>1.5<span class="hljs-tag">&lt;/<span class="hljs-name">java.target.version</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>  <br><br>    ...  <br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>其他项目信息配置、构建配置、分发配置、仓库配置、profile配置、环境配置等，参见<a href="http://maven.apache.org/pom.html" target="_blank" rel="noopener">官方文档描述</a></p>
+</li>
+</ol>
+<h2 id="六、默认约定"><a href="#六、默认约定" class="headerlink" title="六、默认约定"></a>六、默认约定</h2><ul>
+<li>Maven 提倡使用一个共同的标准目录结构，Maven 使用约定优于配置的原则，大家尽可能的遵守这样的目录结构。</li>
+<li>约定优于配置的设定一个是为了简化了配置文件的配置，另外也是为了规范maven工程的目录结构</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">${basedir}</td>
+<td align="center">存放pom.xml和所有的子目录</td>
+</tr>
+<tr>
+<td align="center">${basedir}/src/main/java</td>
+<td align="center">项目的java源代码</td>
+</tr>
+<tr>
+<td align="center">${basedir}/src/main/resources</td>
+<td align="center">项目的资源，比如说property文件，springmvc.xml</td>
+</tr>
+<tr>
+<td align="center">${basedir}/src/test/java</td>
+<td align="center">项目的测试类，比如说Junit代码</td>
+</tr>
+<tr>
+<td align="center">${basedir}/src/test/resources</td>
+<td align="center">测试用的资源</td>
+</tr>
+<tr>
+<td align="center">${basedir}/src/main/webapp/WEB-INF</td>
+<td align="center">web应用文件目录，web项目的信息，比如存放web.xml、本地图片、jsp视图页面</td>
+</tr>
+<tr>
+<td align="center">${basedir}/target</td>
+<td align="center">打包输出目录</td>
+</tr>
+<tr>
+<td align="center">${basedir}/target/classes</td>
+<td align="center">编译输出目录</td>
+</tr>
+<tr>
+<td align="center">${basedir}/target/test-classes</td>
+<td align="center">测试编译输出目录</td>
+</tr>
+<tr>
+<td align="center">TestXXX.java</td>
+<td align="center">Maven只会自动运行符合该命名规则的测试类</td>
+</tr>
+<tr>
+<td align="center">testFunction()</td>
+<td align="center">Maven只会自动运行测试类中的符合该命名规则测试方法</td>
+</tr>
+<tr>
+<td align="center">~/.m2/repository</td>
+<td align="center">Maven默认的本地仓库目录位置</td>
+</tr>
+</tbody></table>
+<h2 id="七、推荐书籍"><a href="#七、推荐书籍" class="headerlink" title="七、推荐书籍"></a>七、推荐书籍</h2><ul>
+<li>《Maven实战》</li>
+</ul>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/02/05/2020-02-05-gitlabs%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>gitlabs离线安装</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/02/05/2020-02-05-hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>hexo博客搭建</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

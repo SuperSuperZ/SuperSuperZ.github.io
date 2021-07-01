@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>类加载机制</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="JVM,类加载,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/JVM">JVM</a></li>
+            
+            <li><a href="/tags/类加载">类加载</a></li>
+            
+            
+        </ul>
+        <h1>类加载机制</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-04-01</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h2 id="一、从java代码到运行经历哪些过程？"><a href="#一、从java代码到运行经历哪些过程？" class="headerlink" title="一、从java代码到运行经历哪些过程？"></a>一、从java代码到运行经历哪些过程？</h2><ul>
+<li><p>java代码 =》编译 =》<strong>加载</strong> =》<strong>验证</strong> =》<strong>准备</strong> =》<strong>解析</strong> =》<strong>初始化</strong> =》使用 =》卸载 </p>
+<ul>
+<li><p>编译：将 <code>源码文件(.java)</code> 编译成可被JVM执行的 <code>二进制字节码文件(.class)</code></p>
+</li>
+<li><p>加载：通过 classpath 以及类的全限定名来寻找 class 文件，并加载到内存</p>
+</li>
+<li><p>验证：校验 class 文件的正确性</p>
+</li>
+<li><p>准备：给静态变量分配内存，初始化为默认值</p>
+</li>
+<li><p>解析：静态链接，将符号引用替换为直接引用</p>
+</li>
+<li><p>初始化：对静态变量赋予指定的值，并执行静态代码块</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、类加载器"><a href="#二、类加载器" class="headerlink" title="二、类加载器"></a>二、类加载器</h2><ul>
+<li><p>上面过程中加粗的五步是由类加载器来实现的  </p>
+</li>
+<li><p>类加载器类型如下：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">加载目录</th>
+<th align="center">加载类描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">启动类加载器 (BootstrapClassLoader ；C++实现)</td>
+<td align="center">%JAVA_HOME%\jre\lib 或 -Xbootclasspath参数指定的路径</td>
+<td align="center">支撑JVM运行的核心类库</td>
+</tr>
+<tr>
+<td align="center">扩展类加载器　(ExtClassLoader)</td>
+<td align="center">%JAVA_HOME%\jre\lib\ext 或-Djava.ext.dir指定位路径</td>
+<td align="center">支撑JVM运行的扩展JAR类包</td>
+</tr>
+<tr>
+<td align="center">应用程序类加载器(AppClassLoader)</td>
+<td align="center">%CLASSPATH%</td>
+<td align="center">一般是用户写的类</td>
+</tr>
+<tr>
+<td align="center">自定义加载器</td>
+<td align="center">用户自定义路径</td>
+<td align="center">自定义路径下的类</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="三、双亲委派模型"><a href="#三、双亲委派模型" class="headerlink" title="三、双亲委派模型"></a>三、双亲委派模型</h2><ol>
+<li><p>双亲委派模型的英文是 <code>Parents Delegation Model</code></p>
+<ul>
+<li>Parents表示为父辈，表达重点在于上层而不是“双”。</li>
+<li>据说是翻译问题，网上有说翻译为“父类委派模型”，但是实际上类加载器之间并不是继承关系，翻译为父类委派会误导大家，个人觉得翻译为<code>上层委派模型</code>比较合适。</li>
+</ul>
+</li>
+<li><p>双亲委派模型原理<br>　　如果一个类加载器收到了<strong>类加载请求</strong>，它会先查看是否有上层的父加载器，如果有则委派给父加载器加载，父加载器也一样查看是否也有它的父加载器，有则依次向上委派,直至到达启动类加载器；倘若没有父加载器 或 自身已是启动类加载器，则尝试加载类，加载成功则直接返回，如果无法完成加载则返回，让委派请求的子加载器自行加载，还是无法完成则依次向下返回加载任务，直至开始受到类加载请求的类，都不能加载则抛异常。<br>　　针对双亲委派模型的这一特点，有开发者戏称其为 <code>“啃老模型”</code> ，哈哈也有点道理。需要什么东西(类)，先问问父辈有没有，有就用父辈的，没有才自己去找。</p>
+</li>
+</ol>
+<p><img src="/images/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6-1.jpg" alt="双亲委派模型"></p>
+<ol start="3">
+<li><p>为什么要设计双亲委派模型？</p>
+<ul>
+<li><p>避免类的重复加载</p>
+<ul>
+<li>父加载器加载过了，无须另外加载</li>
+</ul>
+</li>
+<li><p>保证加载类的唯一性</p>
+<ul>
+<li>加载类的全限定名相同，则以父加载器加载的为准</li>
+</ul>
+</li>
+<li><p>防止核心类库被篡改 </p>
+<ul>
+<li><p>因为启动类是最上层的加载器，启动类加载器会先加载核心类库，用户不能再加载自己编写的相同限定名的含恶意代码的类，否则会抛安全异常<code>SecurityException</code></p>
+</li>
+<li><p>特别的，在双亲委派模型中若用户想加载和核心类库相同的包名的类也是不行的。比如想加载类限定名为<code>java.lang.Abcdefg</code>的类，但<code>java.lang</code>是核心类库的包名，需要权限，否则会抛异常<code>java.lang.SecurityException: Prohibited package name: java.lang</code>，具体涉及java沙箱机制</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>双亲委派模型的局限性</p>
+<ul>
+<li>当业务需要，得加载同一个类库的不同版本时，因为双亲委派的限制，则只能加载一个版本。</li>
+<li>经典的例子就是Web容器：<code>Tomcat</code>，Tomcat可能需要同时运行两个web项目，两个项目很有可能会使用同一个类库的不同版本。</li>
+<li>Tomcat通过<code>自定义加载器</code>突破了这个限制。</li>
+</ul>
+</li>
+</ol>
+<h2 id="四、类加载器核心源码"><a href="#四、类加载器核心源码" class="headerlink" title="四、类加载器核心源码"></a>四、类加载器核心源码</h2><ul>
+<li>以下几个核心方法在<code>ClassLoader</code>抽象类中。</li>
+</ul>
+<ol>
+<li><p>loadClass方法</p>
+<ul>
+<li>用途：加载指定全限定名的类，其中包含双亲委派模式的逻辑实现<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve)<br>    <span class="hljs-keyword">throws</span> ClassNotFoundException<br>&#123;<br>    <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) &#123;<br>        <span class="hljs-comment">// First, check if the class has already been loaded</span><br>        Class&lt;?&gt; c = findLoadedClass(name);<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">long</span> t0 = System.nanoTime();<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) &#123;<br>                    c = parent.loadClass(name, <span class="hljs-keyword">false</span>);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    c = findBootstrapClassOrNull(name);<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;<br>                <span class="hljs-comment">// ClassNotFoundException thrown if class not found</span><br>                <span class="hljs-comment">// from the non-null parent class loader</span><br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;<br>                <span class="hljs-comment">// If still not found, then invoke findClass in order</span><br>                <span class="hljs-comment">// to find the class.</span><br>                <span class="hljs-keyword">long</span> t1 = System.nanoTime();<br>                c = findClass(name);<br><br>                <span class="hljs-comment">// this is the defining class loader; record the stats</span><br>                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);<br>                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);<br>                sun.misc.PerfCounter.getFindClasses().increment();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (resolve) &#123;<br>            resolveClass(c);<br>        &#125;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>findClass方法</p>
+</li>
+</ol>
+<ul>
+<li>作用：默认是抛<code>ClassNotFoundException</code>异常，需要自己重写类加载逻辑  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException(name);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="3">
+<li><p>defineClass方法</p>
+<ul>
+<li>作用：将byte字节流解析成JVM能够识别的Class对象</li>
+</ul>
+</li>
+<li><p>resolveClass方法</p>
+<ul>
+<li>作用：链接一个 Class 对象？</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、示例代码"><a href="#五、示例代码" class="headerlink" title="五、示例代码"></a>五、示例代码</h2><h3 id="例一、获取类加载器名称"><a href="#例一、获取类加载器名称" class="headerlink" title="例一、获取类加载器名称"></a>例一、获取类加载器名称</h3><ul>
+<li>代码  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> sun.net.spi.nameservice.dns.DNSNameService;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">//获取核心类库中Integer的类加载器</span><br>        System.out.println(Integer<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getClassLoader</span>())</span>;<br>        <span class="hljs-comment">//获取拓展类库中DNSNameService的类加载器</span><br>        System.out.println(DNSNameService<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getClassLoader</span>().<span class="hljs-title">getClass</span>().<span class="hljs-title">getName</span>())</span>;<br>        <span class="hljs-comment">//获取当前类的类加载器</span><br>        System.out.println(MyClass<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getClassLoader</span>().<span class="hljs-title">getClass</span>().<span class="hljs-title">getName</span>())</span>;<br>        <span class="hljs-comment">//获取系统的类加载器，一般都会返回ApplicationClassLoader</span><br>        System.out.println(ClassLoader.getSystemClassLoader().getClass().getName());<br>        <span class="hljs-comment">//获取线程上下文的类加载器</span><br>        System.out.println(Thread.currentThread().getContextClassLoader().getClass().getName());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>运行结果<ul>
+<li>需要指出的是，因为启动类加载器BootstrapClassLoader是通过C++语言实现的，在java中没有对应的类，所以输出是null  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">null</span><br>sun.misc.Launcher$ExtClassLoader<br>sun.misc.Launcher$AppClassLoader<br>sun.misc.Launcher$AppClassLoader<br>sun.misc.Launcher$AppClassLoader<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例二、自定义类加载器"><a href="#例二、自定义类加载器" class="headerlink" title="例二、自定义类加载器"></a>例二、自定义类加载器</h3><ul>
+<li>自定义类加载器若通过继承<code>ClassLoader</code>抽象类来实现的话，需要两个核心函数，一个是<code>loadClass(String, boolean)</code>，另一个是<code>findClass(String)</code>。<ul>
+<li><code>ClassLoader</code>抽象类中<code>loadClass(String, boolean)</code>方法实现了双亲委派的具体逻辑，直接拿来用就行，但是<code>findClass(String)</code>方法在抽象类中是直接抛<code>ClassNotFoundException</code>，需要自己重写方法才行。</li>
+</ul>
+</li>
+<li>代码  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.FileInputStream;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoaderTest</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 自定义类加载器</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassLoader</span> </span>&#123;<br>        <br>        <br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 自定义类加载路径</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-keyword">private</span> String classPath;<br>        <br>        <br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 构造类</span><br><span class="hljs-comment">        * <span class="hljs-doctag">@param</span> classPath 自定义类加载路径</span><br><span class="hljs-comment">        */</span> <br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyClassLoader</span><span class="hljs-params">(String classPath)</span> </span>&#123;<br>            <span class="hljs-keyword">this</span>.classPath = classPath;<br>        &#125;<br><br>        <br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">        * 获取class文件并转化为字节数组</span><br><span class="hljs-comment">        * <span class="hljs-doctag">@param</span> name 类全限定名</span><br><span class="hljs-comment">        * <span class="hljs-doctag">@return</span> class文件字节数组</span><br><span class="hljs-comment">        * <span class="hljs-doctag">@throws</span> Exception</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">byte</span>[] loadByte(String name) <span class="hljs-keyword">throws</span> Exception &#123;<br>            name = name.replaceAll(<span class="hljs-string">"\\."</span>, <span class="hljs-string">"/"</span>);<br>            FileInputStream fileInputStream = <span class="hljs-keyword">new</span> FileInputStream(classPath + <span class="hljs-string">"/"</span> + name + <span class="hljs-string">".class"</span>);<br>            <span class="hljs-keyword">byte</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[fileInputStream.available()];<br>            fileInputStream.read(data);<br>            fileInputStream.close();<br>            <span class="hljs-keyword">return</span> data;<br>        &#125;<br><br><br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">        *</span><br><span class="hljs-comment">        * <span class="hljs-doctag">@param</span> name</span><br><span class="hljs-comment">        * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">        * <span class="hljs-doctag">@throws</span> ClassNotFoundException</span><br><span class="hljs-comment">        */</span><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-keyword">byte</span>[] data = loadByte(name);<br>                <span class="hljs-comment">//defineClass将一个字节数组转为Class对象。</span><br>                <span class="hljs-keyword">return</span> defineClass(name, data, <span class="hljs-number">0</span>, data.length);<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException();<br>            &#125;<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>        <span class="hljs-comment">//实例化自定义类加载器</span><br>        MyClassLoader classLoader = <span class="hljs-keyword">new</span> MyClassLoader(<span class="hljs-string">"D:/project"</span>);<br>        <span class="hljs-comment">//导入目标类</span><br>        Class clazz = classLoader.loadClass(<span class="hljs-string">"top.supersuperz.blog.MyHelloWorld"</span>);<br><br>        <span class="hljs-comment">//调用目标类的方法，并输出classloader</span><br>        Object obj = clazz.newInstance();<br>        Method method= clazz.getDeclaredMethod(<span class="hljs-string">"print"</span>, <span class="hljs-keyword">null</span>);<br>        method.invoke(obj, <span class="hljs-keyword">null</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="例三、安全模型验证"><a href="#例三、安全模型验证" class="headerlink" title="例三、安全模型验证"></a>例三、安全模型验证</h3><ol>
+<li><p>example_01</p>
+<ul>
+<li>代码  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> java.lang;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">String</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">"This is my String"</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>运行结果  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">错误: 在类 java.lang.String 中找不到 main 方法, 请将 main 方法定义为:<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span><br><span class="hljs-function">否则 JavaFX 应用程序类必须扩展javafx.application.Application</span><br></code></pre></td></tr></table></figure></li>
+<li>分析<ul>
+<li>明明定义了main方法，为什么却提示找不到呢？因为限定名为<code>java.lang.String</code>的类，在启动类加载器(BootstrapClassLoader)里已经加载过了，所以不会再加载用户编写的<code>java.lang.String</code>，而运行的时候运行的是核心类库的String类，固然没有main方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>example_02</p>
+<ul>
+<li><p>代码(修改例二的main方法)</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    <span class="hljs-comment">//实例化自定义类加载器</span><br>    MyClassLoader classLoader = <span class="hljs-keyword">new</span> MyClassLoader(<span class="hljs-string">"D:/project"</span>);<br>    <span class="hljs-comment">//导入目标类</span><br>    Class clazz = classLoader.loadClass(<span class="hljs-string">"java.lang.Virus"</span>);<br><br>    <span class="hljs-comment">//调用目标类的方法，并输出classloader</span><br>    Object obj = clazz.newInstance();<br>    Method method= clazz.getDeclaredMethod(<span class="hljs-string">"print"</span>, <span class="hljs-keyword">null</span>);<br>    method.invoke(obj, <span class="hljs-keyword">null</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+  <figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">java</span><span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.SecurityException</span>: <span class="hljs-selector-tag">Prohibited</span> <span class="hljs-selector-tag">package</span> <span class="hljs-selector-tag">name</span>: <span class="hljs-selector-tag">java</span><span class="hljs-selector-class">.lang</span><br>    <span class="hljs-selector-tag">at</span> <span class="hljs-selector-tag">java</span><span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.ClassLoader</span><span class="hljs-selector-class">.preDefineClass</span>(<span class="hljs-selector-tag">ClassLoader</span><span class="hljs-selector-class">.java</span><span class="hljs-selector-pseudo">:659)</span><br>    <span class="hljs-selector-tag">at</span> <span class="hljs-selector-tag">java</span><span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.ClassLoader</span><span class="hljs-selector-class">.defineClass</span>(<span class="hljs-selector-tag">ClassLoader</span><span class="hljs-selector-class">.java</span><span class="hljs-selector-pseudo">:758)</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>分析</p>
+<ul>
+<li>当用自定义类加载器强制去加载一个自己写的包名为<code>java.lang</code>的类时，这个自己写的类的包名虽然和核心类库包名一致，但是他们是由不同的类加载器加载的，不属于同一个运行时包，所以java安全沙箱机制规定了自己写的类没有权限去访问已加载的核心类库<code>java.lang</code>包，就抛了SecurityException。(运行时包:指由同一个类装载器装载的、属于同一个包的、多个类型的集合。)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="六、Q-amp-As"><a href="#六、Q-amp-As" class="headerlink" title="六、Q&amp;As"></a>六、Q&amp;As</h2><ol>
+<li><p>类加载过程中验证一步验证什么？</p>
+<ul>
+<li>主要包括四种验证：文件格式验证，元数据验证，字节码验证，符号引用验证。</li>
+<li>参考链接：<a href="https://www.cnblogs.com/fengbs/p/7082262.html" target="_blank" rel="noopener">https://www.cnblogs.com/fengbs/p/7082262.html</a></li>
+</ul>
+</li>
+<li><p>类加载器什么时候会加载类？  </p>
+<ul>
+<li><p>对于单java文件，运行时即加载主类。而对于多个java文件的工程项目编译成jar文件后，运行jar时，类加载器先加载主类。当主类运行使用到其他类时，才加载其他类，比如显式加载时：<code>Class.forName(name)</code>或<code>this.getClass().getClassLoader().loadClass()</code>; 或者隐式加载<code>new方法</code>等时。</p>
+</li>
+<li><p>即jar包里的类不是一次性全部加载的，是<strong>使用到时才加载</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>类加载过程中解析一步的静态链接是什么？</p>
+<ul>
+<li>静态链接是将符号引用替换为直接引用的过程。比如将静态方法(main方法等)替换为指向数据所存内存的指针或句柄等。</li>
+<li>在编译时，并不知道类所依赖的其他东西，会在内存中的哪个位置，只能用符号来表示。而所有东西被加载到这里后会有自己的真实空间地址，那么就可以用真实地址去替换符合引用，这样运行时就能找到它们所依赖的东西了。</li>
+</ul>
+</li>
+<li><p>在JVM中两个class对象是否为同一个类由什么决定？</p>
+<ul>
+<li>加载这个类的ClassLoader实例对象 和 这个类的全限定名来一起决定，有一个不同则不是同一个类</li>
+</ul>
+</li>
+<li><p>加载前期做了什么？</p>
+<ul>
+<li>java.exe调用底层jvm.dll文件中的方法，创建了一个Java虚拟机实例</li>
+<li>创建一个引导类加载器实例</li>
+<li>C++调用创建JVM启动器实例sun.misc.Launcher(该类由引导类加载器负责加载，并由它创建其他类加载器)</li>
+<li>sun.misc.Launcher.getLauncher()</li>
+<li>获取运行类自己的加载器ClassLoader.一般是AppClossLoader实例</li>
+<li>调用loadClass(“com.xxx.xxx.ClassName”)</li>
+<li>加载完成后，调用类的main方法。</li>
+</ul>
+</li>
+<li><p>如何查看class文件对应的字节码？</p>
+<ul>
+<li>可以通过 <code>javap -v</code> 命令，反编译class文件</li>
+</ul>
+</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p>Java字节码指令大全：<a href="https://www.cnblogs.com/longjee/p/8675771.html" target="_blank" rel="noopener">https://www.cnblogs.com/longjee/p/8675771.html</a>  </p>
+</li>
+<li><p><strong>深入理解Java类加载器(ClassLoader)</strong>:<a href="https://blog.csdn.net/javazejian/article/details/73413292" target="_blank" rel="noopener">https://blog.csdn.net/javazejian/article/details/73413292</a></p>
+</li>
+</ul>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/05/13/2020-05-13-mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9A%E6%97%B6%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>MySQL数据库定时自动备份</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/03/30/2020-03-30-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>自动化测试工具</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

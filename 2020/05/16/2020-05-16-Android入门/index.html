@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>Android入门</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+
+
+<meta name="keywords" content="Android,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 4.2.1"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				SuperSuperZ
+				<!-- <a href="/">
+					<img src="">
+				</a> -->
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>SuperSuperZ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/Android">Android</a></li>
+            
+            
+        </ul>
+        <h1>Android入门</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">SuperSuperZ</a></span>
+                <p>2020-05-16</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h3 id="一、安卓项目结构"><a href="#一、安卓项目结构" class="headerlink" title="一、安卓项目结构"></a>一、安卓项目结构</h3><ul>
+<li><p>AndroidMaifest.xml: 声明应用程序模块名、图标、包名、组件、授权</p>
+<ul>
+<li><p>每个Activity需要在该文件声明，若为主活动组件还需要声明&lt;intent-filter&gt;意图过滤器,且过滤器中需要包含MAIN动作(action标签)和LAUNCHER类别(category标签)</p>
+</li>
+<li><p>例1: AndroidMaifest.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">package</span>=<span class="hljs-string">"top.supersuperz.login"</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">application</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:allowBackup</span>=<span class="hljs-string">"true"</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:icon</span>=<span class="hljs-string">"@mipmap/ic_launcher"</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:label</span>=<span class="hljs-string">"@string/app_name"</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:roundIcon</span>=<span class="hljs-string">"@mipmap/ic_launcher_round"</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:supportsRtl</span>=<span class="hljs-string">"true"</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:theme</span>=<span class="hljs-string">"@style/AppTheme"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:name</span>=<span class="hljs-string">".ui.login.LoginActivity"</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:label</span>=<span class="hljs-string">"@string/app_name"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.intent.action.MAIN"</span> /&gt;</span><br><br>                <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">"android.intent.category.LAUNCHER"</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>例2: AndroidMaifest.xml-activity标签</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:name</span>=<span class="hljs-string">"com.example.DemoActivity"</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:clearTaskOnLaunch</span>=<span class="hljs-string">"true"</span></span><br>    &lt;!-- 配 置 变 化 触 发 事 件 --&gt;<br>    android:configChanges="orientation|keyboardHidden"<br>    <span class="hljs-comment">&lt;!-- Activity 的标题 --&gt;</span><br>    android:label="@string/title_scan"<br>    android:parentActivityName=".activity.ResearchActivity"<br>    <span class="hljs-comment">&lt;!-- 启 动 时 屏 幕 的 方 向 --&gt;</span><br>    android:screenOrientation="sensorPortrait"<br>    android:stateNotNeeded="true"<br>    android:theme="@style/AppTheme.NoActionBar"<br>    <span class="hljs-comment">&lt;!-- 禁 止 软 键 盘 --&gt;</span><br>    android:windowSoftInputMode="stateAlwaysHidden"&gt;<br><span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="二、监听器，适配器"><a href="#二、监听器，适配器" class="headerlink" title="二、监听器，适配器"></a>二、监听器，适配器</h3></li>
+</ul>
+</li>
+<li><p>设置点击监听器的两种方式:  1.xml 2.setOnClickListener</p>
+<ul>
+<li>例setOnClickListener<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">findViewById(R.id.btnId).setOnClickListener(onClickListener);<br><br><span class="hljs-keyword">private</span> View.OnClickListener onClickListener=<span class="hljs-keyword">new</span> View.OnClickListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span></span>&#123;<br>        Toast.makeText(MainActivity.<span class="hljs-keyword">this</span>,<span class="hljs-string">"Button 点击事件"</span>,Toast.LENGTH_LONG).show();<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>设置ListView数据源：1.xml-androd:entries=”@array/cities”  2.Adapter</p>
+<ul>
+<li>ArraryAdapter<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//数组数据源</span><br>String[] data = &#123;<span class="hljs-string">""</span>,<span class="hljs-string">""</span>,<span class="hljs-string">""</span>&#125;;<br><span class="hljs-comment">//获取listView对象</span><br>ListView listView = (ListView)findViewById(R.id.list_view);<br><span class="hljs-comment">//创建ArrayAdapter</span><br>ArrayAdapter&lt;String&gt; adapter = <span class="hljs-keyword">new</span> ArraryAdapter&lt;String&gt;(<br>    MainActivity.<span class="hljs-keyword">this</span>,android.R.layout.simple_list_item_1,data<br>)<br><span class="hljs-comment">//组件绑定适配器</span><br>listView.setAdapter(adapter);<br><span class="hljs-comment">//定义列表项点击事件监听器，覆盖他的点击事件回调方法</span><br>listView.setOnItemClickListener(<span class="hljs-keyword">new</span> OnItemClickListener()&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onItemClick</span><span class="hljs-params">(AdapterView&lt;?&gt; parent,View view ,<span class="hljs-keyword">int</span> position,<span class="hljs-keyword">long</span> id)</span></span>&#123;<br>        Toast.makeText(<span class="hljs-keyword">this</span>,<span class="hljs-string">"您选择的是"</span>+data[position],Toast.LENGTH_LONG).show();<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure></li>
+<li>SimpleAdapter<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">String[] mTitle = &#123;<span class="hljs-string">"姓名"</span>,<span class="hljs-string">"性别"</span>,<span class="hljs-string">"年龄"</span>&#125;;<br>String[] mStr = &#123;<span class="hljs-string">"张三"</span>,<span class="hljs-string">"男"</span>,<span class="hljs-string">"20"</span>&#125;;<br><br>ArrayList&lt;Map&lt;String,Object&gt;&gt; mData= <span class="hljs-keyword">new</span> ArrayList&lt;Map&lt;String,Object&gt;&gt;();<br><span class="hljs-keyword">int</span> lengh = mTitle.length;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">0</span>; i &lt; lengh; i++) &#123;<br>    Map&lt;String,Object&gt; item = <span class="hljs-keyword">new</span> HashMap&lt;String,Object&gt;();<br>    item.put(<span class="hljs-string">"image"</span>, R.drawable.jay);<br>    item.put(<span class="hljs-string">"title"</span>, mTitle[i]);<br>    item.put(<span class="hljs-string">"text"</span>, mStr[i]);<br>    mData.add(item);<br>&#125;<br><br><span class="hljs-comment">//获得 ListView 对象</span><br>ListView listView=(ListView)findViewById(R.id.list_view);<br><br><span class="hljs-comment">//创建 SimpleAdapter 对象</span><br>SimpleAdapter adapter = <span class="hljs-keyword">new</span> SimpleAdapter(<span class="hljs-keyword">this</span>,mData,R.layout.simple_item, <span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">"image"</span>,<span class="hljs-string">"title"</span>,<span class="hljs-string">"text"</span>&#125;, <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;R.id.image,R.id.title,R.id.text&#125;);<br><br><span class="hljs-comment">//绑定 ArrayAdapter</span><br>listView.setAdapter(adapter);<br><br><span class="hljs-comment">//注册点击事件监听器</span><br>listView.setOnItemClickListener(<span class="hljs-keyword">new</span> OnItemClickListener() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onItemClick</span><span class="hljs-params">(AdapterView&lt;?&gt; parent, View view, <span class="hljs-keyword">int</span> position,<span class="hljs-keyword">long</span> id)</span> </span>&#123;<br>        Toast.makeText(<span class="hljs-keyword">this</span>,<span class="hljs-string">"您选择标题: "</span> + mTitle [position]+ <span class="hljs-string">"内容是:"</span>+mStr [position],Toast.LENGTH_LONG).show();<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、启动Activity"><a href="#三、启动Activity" class="headerlink" title="三、启动Activity"></a>三、启动Activity</h3><ol>
+<li><p>显式启动</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//创建一个 Intent 对象，指定要启动的Activity 组件类。然后调用 startActivity()方法</span><br>Intent intent = <span class="hljs-keyword">new</span> Intent(MainActivity.<span class="hljs-keyword">this</span>, MyActivity<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;<br>startActivity(intent);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>隐式启动</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//指定一个(拨号)动作，让系统选择能执行该动作的Activity，然后将请求转交给这个(拨号)Activity处理</span><br>Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_DIAL, Uri.parse(“tel:<span class="hljs-number">571</span>-<span class="hljs-number">989898</span>”));<br>startActivity(intent);<br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="四、获取Activity返回值"><a href="#四、获取Activity返回值" class="headerlink" title="四、获取Activity返回值"></a>四、获取Activity返回值</h3><ul>
+<li>通常把调用 startActivity()方法的 Activity 称为父 Activity，被启动的<br>Activity 称为子 Activity。</li>
+</ul>
+<ol>
+<li><p>启动子 Activity</p>
+<ul>
+<li>第一个参数是 Intent 对象。第二个参数是请求码。它用于唯一标识一个子 Activity，父Activity 在获取子 Activity 的返回值时用到。<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> SUBACTIVITY1=<span class="hljs-number">1</span>;<br>Intent intent=<span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>,ChildActivity<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;<br>startActivityForResult(intent,SUBACTIVITY1);<br></code></pre></td></tr></table></figure>
+或者<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">Int SUBACTIVITY2=<span class="hljs-number">2</span>;<br>Intent intent=<span class="hljs-keyword">new</span> Intent(Intent.ACTION_CALL,Uri.parse(“tel:<span class="hljs-number">10086</span>”));<br>startActivityForResult(intent,SUBACTIVITY2);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>设置子 Activity 的返回值</p>
+<ul>
+<li>在子 Activity 调用 finish()方法关闭自己之前，需要调用 setResult()方<br>法将数据信息返回给父 Activity。<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">Intent intent=<span class="hljs-keyword">new</span> Intent();<br>intent.putExtra(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Petter"</span>);<br><span class="hljs-comment">// intent.putExtras(Bundle bundle)</span><br><span class="hljs-comment">//第一个参数是子 Activity 的返回状态码，通常为 Activity.RESULT_OK 或 Activity.RESULT_CANCELED，</span><br><span class="hljs-comment">//第二个参数是 Intent 对象，该 Intent 对象就是子Activity 返回数据给父 Activity 的重要载体。</span><br>setResult(RESULT_OK, intent);<br>finish();<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>父 Activity 获取返回值</p>
+<ul>
+<li>当子 Activity 关闭时，其父 Activity 的 onActivityResult()回调方法会<br>被调用，并将子 Activity 的返回值以参数形式传给父 Activity。</li>
+<li>父 Activity通过重载该方法，就可以获取子 Activity 的返回值。<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode,Intent data)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onActivityResult(requestCode, resultCode, data);<br>    <span class="hljs-comment">//在调用intent 对象 get&lt;Type&gt;()方法之前，还应该判断一下返回状态码和请求码是否正确。</span><br>    <span class="hljs-keyword">if</span> (resultCode == RESULT_OK &amp;&amp; requestCode ==ACTIVITY1 ) &#123;<br>        String name= data.getString(“name”）；<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="五、Activity-启动模式"><a href="#五、Activity-启动模式" class="headerlink" title="五、Activity 启动模式"></a>五、Activity 启动模式</h3><ul>
+<li>Activity 启动 模式有 四种， 分别是： standard、singleTop、 singleTask、<br>singleInstance，可以在 AndroidManifest.xml 文件中通过给<Activity>标签指定<br>android:launchMode 属性来选择启动模式。</Activity></li>
+</ul>
+<ol>
+<li>standard<ul>
+<li>在没有指定情况下，所有 Activity 都默认使用 standard 启动模式。</li>
+<li>对于使用 standard 模式的 Activity，系统不会在乎这个 Activity 是否已经在栈中存在，每次启动都会创建该 Activity 的一个新的实例。</li>
+</ul>
+</li>
+<li>singleTop<ul>
+<li>在启动 Activity 的时候，如果栈顶已经是该 Activity，则认为可以直接使用，不会再创建新的 Activity 实例，否则则创建</li>
+</ul>
+</li>
+<li>singleTask<ul>
+<li>每次启动 Activity 时，系统首先会在栈中检查是否存在该 Activity 实例，如果发现已经存在该 Activity 实例，直接使用该实例，<strong>并把位于该 Activity 之上的所有 Activity 出栈</strong></li>
+</ul>
+</li>
+<li>singleInstance<ul>
+<li>使用 singleInstance 模式的 Activity，会有一个单独的栈来管理这个 Activity，一般来说，这种模式是可以用来应用程序之间共享 Activity 实例，不管是哪个应用程序访问 Activity，都共用同一个栈。</li>
+<li>例如，应用主 Activity 是 A，A 启动了 B，B 是 singleInstance 模式的，然后活动 B 启动了 C，点击 Back 键，会从 C 跳转到活动 A，因为 A 和 C 在一个栈，而 B是另一个栈，在点击 Back 键，A 跳到了 B，再点击 Back 键，退出程序。</li>
+</ul>
+</li>
+</ol>
+<h3 id="附、Activity生命周期"><a href="#附、Activity生命周期" class="headerlink" title="附、Activity生命周期"></a>附、Activity生命周期</h3><ol>
+<li><p>在 Android 系统中，采用 Activity 栈来维护和管理所有 Activity 组件，当<br>一个新的 Activity 创建时，它就会放到栈顶，位于栈顶的 Activity 就处于运行<br>状态。当再有一个新的 Activity 被创建后，会重新压人栈顶，而之前的 Activity<br>则会在新的 Activity 底下，就像枪梭压入子弹一样。而且之前的 Activity 就会<br>进入后台。当系统内存不足时，Android 系统会把位于栈底的 Activity 移除销<br>毁，被系统回收。因此，Activity 的生命周期是指从创建到销毁的过程。</p>
+</li>
+<li><p>生命周期类型：活动、暂停、停止、销毁</p>
+</li>
+<li><p>活动生命周期中的回调方法</p>
+<ul>
+<li><p>onCreate(): 当 Activity 第一次被创建时调用。是生命周期开始的第一个方<br>法。</p>
+</li>
+<li><p>onStart():当 Activity 正在变为可见时调用。这个时候 Activity 已经可见<br>了，但是还没有获得输入焦点，不能跟用户交互。还在应用程序后台</p>
+</li>
+<li><p>onResume():当 Activity 可以接收用户交互时调用。于OnStart相比已处于应用程序前台</p>
+</li>
+<li><p>当 Activity 暂停时调用。在这里，可以用来保存数据，关闭动<br>画和其它比较耗费 CPU 的操作；但是这里绝对不能做耗时的操作，因为如果当前<br>Activity 要启动一个新的 Activity，新 Activity 会在当前 Activity 执行完毕<br>onPause()之后才能进入可见状态。</p>
+</li>
+</ul>
+<p> <strong>注意</strong>:在 Android3.0 之前，调用这个方法之后，Activity 可能会在系统内<br> 存紧张时被系统回收。</p>
+<ul>
+<li><p>onStop():当 Activity 进入后台，并且完全看不见时调用。在调用该方<br>法之后，系统在内存不够时可能回收该 Activity。</p>
+</li>
+<li><p>onDestroy()：当 Activity 被销毁时调用，该是 Activity 生命周期中最后<br>一个调用方法。Activity 销毁原因：一般是程序中调用 Activity 的 finish()<br>方法销毁，二是系统在内存不足时系统主动销毁 Activity，以用来节省空间，<br>三是用户手动关闭Activity的界面。调用方法isFinishing()可以判断Activity<br>是否正被销毁。</p>
+</li>
+<li><p>onRestart():在 Activity 又重新回到可视状态时调用。<br>除了 Activity 生命周期回调方法以外，还有 onSaveInstanceState() 和<br>onRestoreInstanceState()两个方法经常会被使用，用来保存和恢复 Activity<br>的状态信息，例如用户在界面上输入的数据或选择的内容等</p>
+</li>
+<li><p>onSaveInstanceState()：不属于 Activity 的生命周期方法，在 Activity<br>状态变化时，不一定会被触发。但是在应用遇到意外情况，比如：内存紧张，用户点击了 Home 键或者用户按下电源键关闭屏幕等，系统可能会销毁 Activity，<br>但该 Activity 在未来某个时刻还会显示在屏幕，这时 onSaveInstanceState（）<br>方法会被调用。需要强调的是系统回收 Activity，而不是用户手动销毁 Activity。</p>
+</li>
+<li><p>onRestoreInstanceState()： 这个方法调用的前提是，Activity 必须是被<br>系统销毁了，在 Activity 被再次创建时它会在 onStart()方法之后被调用。</p>
+</li>
+</ul>
+</li>
+<li><p>一般调用顺序onCreate()-&gt;onStart()-&gt;onResume()-&gt;onPause()-&gt;onStop()-&gt;onDestroy()</p>
+</li>
+</ol>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () {
+        $('#article').click(function (e) {
+            if (e.target.tagName == "IMG") {
+                if ($('#nonediv').length == 0) {
+                    let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`;
+                    let MDiv =
+                        "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>";
+                    $('#article').append(MDiv);
+                    $('#article').append(MImg);
+                    $("#nonediv").fadeIn("slow");
+                    $("#noneimg img").fadeIn("slow")
+                }
+            } else {
+                if ($('#nonediv').length !== 0) {
+                    $("#noneimg ").fadeOut("slow");
+                    $("#nonediv").fadeOut("slow");
+                    setTimeout(function () {
+                        $('#nonediv').remove();
+                        $('#noneimg').remove()
+                    }, 500)
+                }
+            }
+        });
+        $('.article-content').addClass('content-move')
+    });
+</script>
+<div class="Last-Next">
+    
+    <a href="/2020/05/25/2020-05-25-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+        <div class="last">
+            <span>上一篇</span>
+            <p>Lambda表达式</p>
+        </div>
+    </a>
+    
+
+    
+    <a href="/2020/05/13/2020-05-13-mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9A%E6%97%B6%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD/">
+        <div class="next">
+            <span>下一篇</span>
+            <p>MySQL数据库定时自动备份</p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By SuperSuperZ. 改自主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c 改自Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>
